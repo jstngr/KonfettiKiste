@@ -25,8 +25,18 @@ const Booking = ({ selectedAddons }: BookingProps) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [street, setStreet] = useState("");
   const [plz, setPlz] = useState("");
+  const [city, setCity] = useState("");
   const [pkg, setPkg] = useState<string>();
+
+  const packagePrices: Record<string, number> = {
+    basis: 89, spass: 149, premium: 249, vip: 399,
+  };
+
+  const extrasTotal = selectedAddons.reduce((s, a) => s + a.price * a.qty, 0);
+  const packagePrice = pkg ? packagePrices[pkg] : 0;
+  const grandTotal = packagePrice + extrasTotal;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,17 +71,26 @@ const Booking = ({ selectedAddons }: BookingProps) => {
             </div>
           </div>
 
+          <div className="space-y-2">
+            <label className="text-sm font-semibold">Straße & Hausnummer *</label>
+            <Input placeholder="Musterstraße 12" value={street} onChange={(e) => setStreet(e.target.value)} />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="space-y-2">
+              <label className="text-sm font-semibold">PLZ *</label>
+              <Input placeholder="50321" value={plz} onChange={(e) => setPlz(e.target.value)} />
+            </div>
+            <div className="space-y-2 sm:col-span-2">
+              <label className="text-sm font-semibold">Ort *</label>
+              <Input placeholder="Brühl" value={city} onChange={(e) => setCity(e.target.value)} />
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <label className="text-sm font-semibold">Telefon</label>
               <Input placeholder="+49 123 456789" value={phone} onChange={(e) => setPhone(e.target.value)} />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-semibold">PLZ / Ort</label>
-              <div className="relative">
-                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input className="pl-9" placeholder="50321 Brühl" value={plz} onChange={(e) => setPlz(e.target.value)} />
-              </div>
             </div>
           </div>
 
@@ -134,21 +153,24 @@ const Booking = ({ selectedAddons }: BookingProps) => {
             </div>
           </div>
 
-          {selectedAddons.length > 0 && (
+          {/* Order summary */}
+          {pkg && (
             <div className="space-y-2">
-              <label className="text-sm font-semibold">Gewählte Extras</label>
+              <label className="text-sm font-semibold">Zusammenfassung</label>
               <div className="bg-muted/50 rounded-lg p-4 space-y-1">
+                <div className="flex justify-between text-sm">
+                  <span>📦 Paket: {pkg.charAt(0).toUpperCase() + pkg.slice(1)}</span>
+                  <span className="font-semibold">{packagePrice}€</span>
+                </div>
                 {selectedAddons.map((addon) => (
                   <div key={addon.name} className="flex justify-between text-sm">
                     <span>{addon.emoji} {addon.name} × {addon.qty}</span>
-                    <span className="font-semibold text-primary">{addon.price * addon.qty}€</span>
+                    <span className="font-semibold">{addon.price * addon.qty}€</span>
                   </div>
                 ))}
-                <div className="border-t border-border pt-2 mt-2 flex justify-between font-bold">
-                  <span>Extras gesamt</span>
-                  <span className="text-primary">
-                    +{selectedAddons.reduce((s, a) => s + a.price * a.qty, 0)}€
-                  </span>
+                <div className="border-t border-border pt-2 mt-2 flex justify-between font-bold text-lg">
+                  <span>Gesamtsumme</span>
+                  <span className="text-primary">{grandTotal}€</span>
                 </div>
               </div>
             </div>

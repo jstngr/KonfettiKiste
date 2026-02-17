@@ -49,7 +49,7 @@ const Booking = ({ selectedAddons }: BookingProps) => {
 
   return (
     <section id="buchung" className="py-24 px-4">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-2xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold font-display mb-4">
             Termin <span className="text-gradient-party">buchen</span>
@@ -59,124 +59,147 @@ const Booking = ({ selectedAddons }: BookingProps) => {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-card rounded-2xl border-2 border-border p-8 shadow-party space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label className="text-sm font-semibold">Name *</label>
-              <Input placeholder="Max Mustermann" value={name} onChange={(e) => setName(e.target.value)} />
+        <form onSubmit={handleSubmit} className="bg-card rounded-3xl border border-border p-6 md:p-10 shadow-party space-y-8">
+          {/* Section: Personal info */}
+          <fieldset className="space-y-4">
+            <legend className="text-base font-bold font-display text-foreground flex items-center gap-2 mb-2">
+              👤 Persönliche Daten
+            </legend>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <label className="text-sm font-semibold text-muted-foreground">Name *</label>
+                <Input placeholder="Max Mustermann" value={name} onChange={(e) => setName(e.target.value)} className="rounded-xl h-11" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-semibold text-muted-foreground">E-Mail *</label>
+                <Input type="email" placeholder="max@beispiel.de" value={email} onChange={(e) => setEmail(e.target.value)} className="rounded-xl h-11" />
+              </div>
             </div>
-            <div className="space-y-2">
-              <label className="text-sm font-semibold">E-Mail *</label>
-              <Input type="email" placeholder="max@beispiel.de" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <div className="space-y-1.5">
+              <label className="text-sm font-semibold text-muted-foreground">Telefon</label>
+              <Input placeholder="+49 123 456789" value={phone} onChange={(e) => setPhone(e.target.value)} className="rounded-xl h-11" />
             </div>
-          </div>
+          </fieldset>
 
-          <div className="space-y-2">
-            <label className="text-sm font-semibold">Straße & Hausnummer *</label>
-            <Input placeholder="Musterstraße 12" value={street} onChange={(e) => setStreet(e.target.value)} />
-          </div>
+          <div className="border-t border-border" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="space-y-2">
-              <label className="text-sm font-semibold">PLZ *</label>
-              <Input placeholder="50321" value={plz} onChange={(e) => setPlz(e.target.value)} />
+          {/* Section: Address */}
+          <fieldset className="space-y-4">
+            <legend className="text-base font-bold font-display text-foreground flex items-center gap-2 mb-2">
+              <MapPin className="w-4 h-4 text-primary" /> Adresse
+            </legend>
+            <div className="space-y-1.5">
+              <label className="text-sm font-semibold text-muted-foreground">Straße & Hausnummer *</label>
+              <Input placeholder="Musterstraße 12" value={street} onChange={(e) => setStreet(e.target.value)} className="rounded-xl h-11" />
             </div>
-            <div className="space-y-2 sm:col-span-2">
-              <label className="text-sm font-semibold">Ort *</label>
-              <Input placeholder="Brühl" value={city} onChange={(e) => setCity(e.target.value)} />
+            <div className="grid grid-cols-3 gap-4">
+              <div className="space-y-1.5">
+                <label className="text-sm font-semibold text-muted-foreground">PLZ *</label>
+                <Input placeholder="50321" value={plz} onChange={(e) => setPlz(e.target.value)} className="rounded-xl h-11" />
+              </div>
+              <div className="space-y-1.5 col-span-2">
+                <label className="text-sm font-semibold text-muted-foreground">Ort *</label>
+                <Input placeholder="Brühl" value={city} onChange={(e) => setCity(e.target.value)} className="rounded-xl h-11" />
+              </div>
             </div>
-          </div>
+          </fieldset>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label className="text-sm font-semibold">Telefon</label>
-              <Input placeholder="+49 123 456789" value={phone} onChange={(e) => setPhone(e.target.value)} />
-            </div>
-          </div>
+          <div className="border-t border-border" />
 
-          <div className="space-y-2">
-            <label className="text-sm font-semibold">Paket *</label>
-            <Select value={pkg} onValueChange={setPkg}>
-              <SelectTrigger>
-                <SelectValue placeholder="Paket auswählen..." />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="basis">Basis – 89€</SelectItem>
-                <SelectItem value="spass">Spaß – 149€</SelectItem>
-                <SelectItem value="premium">Premium – 249€</SelectItem>
-                <SelectItem value="vip">VIP – 399€</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label className="text-sm font-semibold flex items-center gap-1">
-                <CalendarIcon className="w-4 h-4" /> Datum *
-              </label>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className={cn("w-full justify-start text-left font-normal", !date && "text-muted-foreground")}
-                  >
-                    {date ? format(date, "PPP", { locale: de }) : "Datum wählen"}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={date}
-                    onSelect={setDate}
-                    disabled={(d) => d < new Date()}
-                    initialFocus
-                    className="p-3 pointer-events-auto"
-                  />
-                </PopoverContent>
-              </Popover>
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-semibold flex items-center gap-1">
-                <Clock className="w-4 h-4" /> Uhrzeit *
-              </label>
-              <Select value={time} onValueChange={setTime}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Uhrzeit wählen..." />
+          {/* Section: Package & Date */}
+          <fieldset className="space-y-4">
+            <legend className="text-base font-bold font-display text-foreground flex items-center gap-2 mb-2">
+              🎁 Paket & Termin
+            </legend>
+            <div className="space-y-1.5">
+              <label className="text-sm font-semibold text-muted-foreground">Paket *</label>
+              <Select value={pkg} onValueChange={setPkg}>
+                <SelectTrigger className="rounded-xl h-11">
+                  <SelectValue placeholder="Paket auswählen..." />
                 </SelectTrigger>
                 <SelectContent>
-                  {timeSlots.map((t) => (
-                    <SelectItem key={t} value={t}>{t} Uhr</SelectItem>
-                  ))}
+                  <SelectItem value="basis">Basis – 89€</SelectItem>
+                  <SelectItem value="spass">Spaß – 149€</SelectItem>
+                  <SelectItem value="premium">Premium – 249€</SelectItem>
+                  <SelectItem value="vip">VIP – 399€</SelectItem>
                 </SelectContent>
               </Select>
             </div>
-          </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <label className="text-sm font-semibold text-muted-foreground flex items-center gap-1">
+                  <CalendarIcon className="w-3.5 h-3.5" /> Datum *
+                </label>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className={cn("w-full justify-start text-left font-normal rounded-xl h-11", !date && "text-muted-foreground")}
+                    >
+                      {date ? format(date, "PPP", { locale: de }) : "Datum wählen"}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={date}
+                      onSelect={setDate}
+                      disabled={(d) => d < new Date()}
+                      initialFocus
+                      className="p-3 pointer-events-auto"
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-sm font-semibold text-muted-foreground flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5" /> Uhrzeit *
+                </label>
+                <Select value={time} onValueChange={setTime}>
+                  <SelectTrigger className="rounded-xl h-11">
+                    <SelectValue placeholder="Uhrzeit wählen..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {timeSlots.map((t) => (
+                      <SelectItem key={t} value={t}>{t} Uhr</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </fieldset>
 
           {/* Order summary */}
           {pkg && (
-            <div className="space-y-2">
-              <label className="text-sm font-semibold">Zusammenfassung</label>
-              <div className="bg-muted/50 rounded-lg p-4 space-y-1">
-                <div className="flex justify-between text-sm">
-                  <span>📦 Paket: {pkg.charAt(0).toUpperCase() + pkg.slice(1)}</span>
-                  <span className="font-semibold">{packagePrice}€</span>
-                </div>
-                {selectedAddons.map((addon) => (
-                  <div key={addon.name} className="flex justify-between text-sm">
-                    <span>{addon.emoji} {addon.name}</span>
-                    <span className="font-semibold">{addon.price}€</span>
+            <>
+              <div className="border-t border-border" />
+              <div className="space-y-3">
+                <h3 className="text-base font-bold font-display text-foreground flex items-center gap-2">
+                  🧾 Zusammenfassung
+                </h3>
+                <div className="bg-muted/40 rounded-2xl p-5 space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">📦 Paket: {pkg.charAt(0).toUpperCase() + pkg.slice(1)}</span>
+                    <span className="font-bold">{packagePrice}€</span>
                   </div>
-                ))}
-                <div className="border-t border-border pt-2 mt-2 flex justify-between font-bold text-lg">
-                  <span>Gesamtsumme</span>
-                  <span className="text-primary">{grandTotal}€</span>
+                  {selectedAddons.map((addon) => (
+                    <div key={addon.name} className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">{addon.emoji} {addon.name}</span>
+                      <span className="font-bold">{addon.price}€</span>
+                    </div>
+                  ))}
+                  <div className="border-t border-border pt-3 mt-3 flex justify-between font-bold text-xl">
+                    <span>Gesamt</span>
+                    <span className="text-gradient-party">{grandTotal}€</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </>
           )}
 
-          <Button type="submit" size="lg" className="w-full text-lg bg-gradient-party shadow-party hover:scale-[1.02] transition-transform">
+          <Button type="submit" size="lg" className="w-full text-lg rounded-xl h-12 bg-gradient-party shadow-party hover:scale-[1.02] transition-transform">
             <Send className="w-5 h-5 mr-2" />
             Anfrage senden
           </Button>

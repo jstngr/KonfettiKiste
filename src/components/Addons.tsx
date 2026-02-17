@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Plus, Minus } from "lucide-react";
+import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { AddonSelection } from "@/pages/Index";
 
@@ -13,6 +13,7 @@ interface Addon {
 interface AddonsProps {
   onSelectionChange: (addons: AddonSelection[]) => void;
 }
+
 const addons: Addon[] = [
   { name: "Extra Hüpfburg-Stunde", price: 40, description: "Noch mehr Hüpfspaß!", emoji: "🏰" },
   { name: "Candy Bar", price: 35, description: "Süßigkeiten-Buffet mit Naschereien", emoji: "🍬" },
@@ -23,31 +24,27 @@ const addons: Addon[] = [
 ];
 
 const Addons = ({ onSelectionChange }: AddonsProps) => {
-  const [selected, setSelected] = useState<Record<string, number>>({});
+  const [selected, setSelected] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    const list = Object.entries(selected).map(([name, qty]) => {
-      const addon = addons.find((a) => a.name === name)!;
-      return { name, price: addon.price, qty, emoji: addon.emoji };
-    });
+    const list = addons
+      .filter((a) => selected.has(a.name))
+      .map((a) => ({ name: a.name, price: a.price, emoji: a.emoji }));
     onSelectionChange(list);
   }, [selected, onSelectionChange]);
 
-  const toggle = (name: string, delta: number) => {
+  const toggle = (name: string) => {
     setSelected((prev) => {
-      const current = prev[name] || 0;
-      const next = Math.max(0, current + delta);
-      if (next === 0) {
-        const { [name]: _, ...rest } = prev;
-        return rest;
-      }
-      return { ...prev, [name]: next };
+      const next = new Set(prev);
+      if (next.has(name)) next.delete(name);
+      else next.add(name);
+      return next;
     });
   };
-  const total = Object.entries(selected).reduce(
-    (sum, [name, qty]) => sum + (addons.find((a) => a.name === name)?.price || 0) * qty,
-    0
-  );
+
+  const total = addons
+    .filter((a) => selected.has(a.name))
+    .reduce((sum, a) => sum + a.price, 0);
 
   return (
     <section id="extras" className="py-24 px-4 bg-muted/50">
@@ -63,40 +60,31 @@ const Addons = ({ onSelectionChange }: AddonsProps) => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {addons.map((addon) => {
-            const qty = selected[addon.name] || 0;
+            const isSelected = selected.has(addon.name);
             return (
-              <div
+              <button
                 key={addon.name}
+                type="button"
+                onClick={() => toggle(addon.name)}
                 className={cn(
-                  "bg-card rounded-xl border-2 p-5 transition-all duration-200",
-                  qty > 0 ? "border-primary shadow-party" : "border-border hover:border-primary/30"
+                  "bg-card rounded-xl border-2 p-5 transition-all duration-200 text-left relative",
+                  isSelected ? "border-primary shadow-party" : "border-border hover:border-primary/30"
                 )}
               >
-                <div className="flex items-start justify-between mb-3">
+                {isSelected && (
+                  <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+                    <Check className="w-4 h-4 text-primary-foreground" />
+                  </div>
+                )}
+                <div className="flex items-start justify-between mb-3 pr-8">
                   <div>
                     <span className="text-2xl mr-2">{addon.emoji}</span>
                     <span className="font-bold font-display text-lg">{addon.name}</span>
                   </div>
-                  <span className="font-bold text-primary text-lg">{addon.price}€</span>
+                  <span className="font-bold text-primary text-lg">+{addon.price}€</span>
                 </div>
-                <p className="text-sm text-muted-foreground mb-4">{addon.description}</p>
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => toggle(addon.name, -1)}
-                    className="w-8 h-8 rounded-full border-2 border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors disabled:opacity-30"
-                    disabled={qty === 0}
-                  >
-                    <Minus className="w-4 h-4" />
-                  </button>
-                  <span className="font-bold text-lg w-6 text-center">{qty}</span>
-                  <button
-                    onClick={() => toggle(addon.name, 1)}
-                    className="w-8 h-8 rounded-full border-2 border-primary text-primary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
-                  >
-                    <Plus className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
+                <p className="text-sm text-muted-foreground">{addon.description}</p>
+              </button>
             );
           })}
         </div>

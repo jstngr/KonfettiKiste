@@ -67,15 +67,21 @@ const Addons = ({ onSelectionChange }: AddonsProps) => {
                 type="button"
                 onClick={() => toggle(addon.name)}
                 className={cn(
-                  "bg-card rounded-xl border-2 p-5 transition-all duration-200 text-left relative",
-                  isSelected ? "border-primary shadow-party" : "border-border hover:border-primary/30"
+                  "bg-card rounded-xl border-2 p-5 transition-all duration-200 text-left relative cursor-pointer group",
+                  isSelected
+                    ? "border-primary shadow-party ring-2 ring-primary/20"
+                    : "border-border hover:border-primary/40 hover:shadow-md"
                 )}
               >
-                {isSelected && (
-                  <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary flex items-center justify-center">
-                    <Check className="w-4 h-4 text-primary-foreground" />
-                  </div>
-                )}
+                {/* Checkbox indicator */}
+                <div className={cn(
+                  "absolute top-3 right-3 w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all duration-200",
+                  isSelected
+                    ? "bg-primary border-primary"
+                    : "border-muted-foreground/30 group-hover:border-primary/50"
+                )}>
+                  {isSelected && <Check className="w-4 h-4 text-primary-foreground" />}
+                </div>
                 <div className="flex items-start justify-between mb-3 pr-8">
                   <div>
                     <span className="text-2xl mr-2">{addon.emoji}</span>
@@ -83,7 +89,15 @@ const Addons = ({ onSelectionChange }: AddonsProps) => {
                   </div>
                   <span className="font-bold text-primary text-lg">+{addon.price}€</span>
                 </div>
-                <p className="text-sm text-muted-foreground">{addon.description}</p>
+                <p className="text-sm text-muted-foreground mb-3">{addon.description}</p>
+                <span className={cn(
+                  "text-xs font-semibold px-3 py-1 rounded-full transition-colors",
+                  isSelected
+                    ? "bg-primary/10 text-primary"
+                    : "bg-muted text-muted-foreground group-hover:text-primary"
+                )}>
+                  {isSelected ? "✓ Ausgewählt" : "Auswählen"}
+                </span>
               </button>
             );
           })}

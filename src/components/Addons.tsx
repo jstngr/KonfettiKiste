@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Plus, Minus } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { AddonSelection } from "@/pages/Index";
 
 interface Addon {
   name: string;
@@ -9,6 +10,9 @@ interface Addon {
   emoji: string;
 }
 
+interface AddonsProps {
+  onSelectionChange: (addons: AddonSelection[]) => void;
+}
 const addons: Addon[] = [
   { name: "Extra Hüpfburg-Stunde", price: 40, description: "Noch mehr Hüpfspaß!", emoji: "🏰" },
   { name: "Candy Bar", price: 35, description: "Süßigkeiten-Buffet mit Naschereien", emoji: "🍬" },
@@ -18,8 +22,16 @@ const addons: Addon[] = [
   { name: "Pinata mit Füllung", price: 30, description: "Bunte Pinata inkl. Süßigkeiten", emoji: "🪅" },
 ];
 
-const Addons = () => {
+const Addons = ({ onSelectionChange }: AddonsProps) => {
   const [selected, setSelected] = useState<Record<string, number>>({});
+
+  useEffect(() => {
+    const list = Object.entries(selected).map(([name, qty]) => {
+      const addon = addons.find((a) => a.name === name)!;
+      return { name, price: addon.price, qty, emoji: addon.emoji };
+    });
+    onSelectionChange(list);
+  }, [selected, onSelectionChange]);
 
   const toggle = (name: string, delta: number) => {
     setSelected((prev) => {
@@ -32,7 +44,6 @@ const Addons = () => {
       return { ...prev, [name]: next };
     });
   };
-
   const total = Object.entries(selected).reduce(
     (sum, [name, qty]) => sum + (addons.find((a) => a.name === name)?.price || 0) * qty,
     0

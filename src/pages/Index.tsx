@@ -10,7 +10,6 @@ import Footer from "@/components/Footer";
 export interface AddonSelection {
   name: string;
   price: number;
-  qty: number;
   emoji: string;
 }
 

@@ -34,7 +34,7 @@ const Booking = ({ selectedAddons }: BookingProps) => {
     basis: 89, spass: 149, premium: 249, vip: 399,
   };
 
-  const extrasTotal = selectedAddons.reduce((s, a) => s + a.price * a.qty, 0);
+  const extrasTotal = selectedAddons.reduce((s, a) => s + a.price, 0);
   const packagePrice = pkg ? packagePrices[pkg] : 0;
   const grandTotal = packagePrice + extrasTotal;
 
@@ -164,8 +164,8 @@ const Booking = ({ selectedAddons }: BookingProps) => {
                 </div>
                 {selectedAddons.map((addon) => (
                   <div key={addon.name} className="flex justify-between text-sm">
-                    <span>{addon.emoji} {addon.name} × {addon.qty}</span>
-                    <span className="font-semibold">{addon.price * addon.qty}€</span>
+                    <span>{addon.emoji} {addon.name}</span>
+                    <span className="font-semibold">{addon.price}€</span>
                   </div>
                 ))}
                 <div className="border-t border-border pt-2 mt-2 flex justify-between font-bold text-lg">

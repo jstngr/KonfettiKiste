@@ -9,12 +9,17 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import type { AddonSelection } from "@/pages/Index";
 
 const timeSlots = [
   "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"
 ];
 
-const Booking = () => {
+interface BookingProps {
+  selectedAddons: AddonSelection[];
+}
+
+const Booking = ({ selectedAddons }: BookingProps) => {
   const [date, setDate] = useState<Date>();
   const [time, setTime] = useState<string>();
   const [name, setName] = useState("");
@@ -128,6 +133,26 @@ const Booking = () => {
               </Select>
             </div>
           </div>
+
+          {selectedAddons.length > 0 && (
+            <div className="space-y-2">
+              <label className="text-sm font-semibold">Gewählte Extras</label>
+              <div className="bg-muted/50 rounded-lg p-4 space-y-1">
+                {selectedAddons.map((addon) => (
+                  <div key={addon.name} className="flex justify-between text-sm">
+                    <span>{addon.emoji} {addon.name} × {addon.qty}</span>
+                    <span className="font-semibold text-primary">{addon.price * addon.qty}€</span>
+                  </div>
+                ))}
+                <div className="border-t border-border pt-2 mt-2 flex justify-between font-bold">
+                  <span>Extras gesamt</span>
+                  <span className="text-primary">
+                    +{selectedAddons.reduce((s, a) => s + a.price * a.qty, 0)}€
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
 
           <Button type="submit" size="lg" className="w-full text-lg bg-gradient-party shadow-party hover:scale-[1.02] transition-transform">
             <Send className="w-5 h-5 mr-2" />

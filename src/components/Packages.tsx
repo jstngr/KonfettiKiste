@@ -73,7 +73,11 @@ const packages: Package[] = [
   },
 ];
 
-const Packages = () => {
+interface PackagesProps {
+  onBookPackage: (pkg: string) => void;
+}
+
+const Packages = ({ onBookPackage }: PackagesProps) => {
   return (
     <section id="pakete" className="py-24 px-4">
       <div className="max-w-7xl mx-auto">
@@ -131,7 +135,7 @@ const Packages = () => {
                     : ""
                 )}
                 variant={pkg.popular ? "default" : "outline"}
-                onClick={() => document.getElementById("buchung")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => onBookPackage(pkg.name.toLowerCase())}
               >
                 Jetzt buchen
               </Button>

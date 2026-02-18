@@ -15,17 +15,21 @@ export interface AddonSelection {
 
 const Index = () => {
   const [selectedAddons, setSelectedAddons] = useState<AddonSelection[]>([]);
+  const [selectedPackage, setSelectedPackage] = useState<string>("premium");
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       <Hero />
-      <Packages />
+      <Packages onBookPackage={(pkg) => {
+        setSelectedPackage(pkg);
+        setTimeout(() => document.getElementById("buchung")?.scrollIntoView({ behavior: "smooth" }), 50);
+      }} />
       <Addons onSelectionChange={setSelectedAddons} />
       <div id="lieferung">
         <DeliveryInfo />
       </div>
-      <Booking selectedAddons={selectedAddons} />
+      <Booking selectedAddons={selectedAddons} selectedPackage={selectedPackage} onPackageChange={setSelectedPackage} />
       <Footer />
     </div>
   );

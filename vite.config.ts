@@ -13,9 +13,13 @@ export default defineConfig(({ mode }) => ({
     },
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  base: "/KonfettiKiste/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
 }));
+
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";

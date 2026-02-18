@@ -19,7 +19,9 @@ const Hero = () => {
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <div className="inline-flex items-center gap-2 bg-card/90 backdrop-blur-sm rounded-full px-5 py-2 mb-8 shadow-party">
           <PartyPopper className="w-5 h-5 text-primary" />
-          <span className="text-sm font-semibold text-foreground">Unvergessliche Kinderpartys in Brühl & Umgebung</span>
+          <span className="text-sm font-semibold text-foreground">
+            Unvergessliche Kinderpartys in Brühl & Umgebung
+          </span>
         </div>
 
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary-foreground drop-shadow-lg font-display">
@@ -27,8 +29,8 @@ const Hero = () => {
         </h1>
 
         <p className="text-xl md:text-2xl mb-10 text-primary-foreground max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-          Wir bringen die Party zu euch! Hüpfburgen, Popcornmaschinen, Seifenblasen & mehr – 
-          für den besten Kindergeburtstag aller Zeiten.
+          Wir bringen die Party zu euch! Hüpfburgen, Popcornmaschinen,
+          Seifenblasen & mehr – für den besten Kindergeburtstag aller Zeiten.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -42,8 +44,12 @@ const Hero = () => {
           <Button
             size="lg"
             variant="outline"
-            className="text-lg px-8 py-6 bg-card/80 backdrop-blur-sm border-card hover:bg-card transition-all"
-            onClick={() => document.getElementById("buchung")?.scrollIntoView({ behavior: "smooth" })}
+            className="text-lg px-8 py-6 bg-card/80 backdrop-blur-sm border-card hover:text-primary hover:bg-card/80 transition-all"
+            onClick={() =>
+              document
+                .getElementById("buchung")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
           >
             Jetzt buchen
           </Button>

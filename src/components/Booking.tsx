@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { format } from "date-fns";
 import { de } from "date-fns/locale";
-import { CalendarIcon, Clock, MapPin, Send } from "lucide-react";
+import { CalendarIcon, Clock, MapPin, Send, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -17,9 +17,11 @@ const timeSlots = [
 
 interface BookingProps {
   selectedAddons: AddonSelection[];
+  selectedPackage: string;
+  onPackageChange: (pkg: string) => void;
 }
 
-const Booking = ({ selectedAddons }: BookingProps) => {
+const Booking = ({ selectedAddons, selectedPackage, onPackageChange }: BookingProps) => {
   const [date, setDate] = useState<Date>();
   const [time, setTime] = useState<string>();
   const [name, setName] = useState("");
@@ -28,19 +30,18 @@ const Booking = ({ selectedAddons }: BookingProps) => {
   const [street, setStreet] = useState("");
   const [plz, setPlz] = useState("");
   const [city, setCity] = useState("");
-  const [pkg, setPkg] = useState<string>();
 
   const packagePrices: Record<string, number> = {
     basis: 89, spass: 149, premium: 249, vip: 399,
   };
 
   const extrasTotal = selectedAddons.reduce((s, a) => s + a.price, 0);
-  const packagePrice = pkg ? packagePrices[pkg] : 0;
+  const packagePrice = selectedPackage ? packagePrices[selectedPackage] : 0;
   const grandTotal = packagePrice + extrasTotal;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!date || !time || !name || !email || !pkg) {
+    if (!date || !time || !name || !email || !selectedPackage) {
       toast.error("Bitte fülle alle Pflichtfelder aus.");
       return;
     }
@@ -113,7 +114,7 @@ const Booking = ({ selectedAddons }: BookingProps) => {
             </legend>
             <div className="space-y-1.5">
               <label className="text-sm font-semibold text-muted-foreground">Paket *</label>
-              <Select value={pkg} onValueChange={setPkg}>
+              <Select value={selectedPackage} onValueChange={onPackageChange}>
                 <SelectTrigger className="rounded-xl h-11">
                   <SelectValue placeholder="Paket auswählen..." />
                 </SelectTrigger>
@@ -171,8 +172,30 @@ const Booking = ({ selectedAddons }: BookingProps) => {
             </div>
           </fieldset>
 
+          {/* Addon CTA if none selected */}
+          {selectedAddons.length === 0 && (
+            <>
+              <div className="border-t border-border" />
+              <div className="flex items-center justify-between bg-muted/40 rounded-2xl p-4">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Sparkles className="w-4 h-4 text-secondary" />
+                  <span>Möchtest du Extras dazubuchen?</span>
+                </div>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="rounded-xl shrink-0"
+                  onClick={() => document.getElementById("extras")?.scrollIntoView({ behavior: "smooth" })}
+                >
+                  Extras auswählen
+                </Button>
+              </div>
+            </>
+          )}
+
           {/* Order summary */}
-          {pkg && (
+          {selectedPackage && (
             <>
               <div className="border-t border-border" />
               <div className="space-y-3">
@@ -181,7 +204,7 @@ const Booking = ({ selectedAddons }: BookingProps) => {
                 </h3>
                 <div className="bg-muted/40 rounded-2xl p-5 space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">📦 Paket: {pkg.charAt(0).toUpperCase() + pkg.slice(1)}</span>
+                    <span className="text-muted-foreground">📦 Paket: {selectedPackage.charAt(0).toUpperCase() + selectedPackage.slice(1)}</span>
                     <span className="font-bold">{packagePrice}€</span>
                   </div>
                   {selectedAddons.map((addon) => (

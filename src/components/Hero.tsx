@@ -48,14 +48,14 @@ const Hero = () => {
             Jetzt buchen
           </Button>
         </div>
-
-        <button
-          onClick={scrollToPackages}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-primary-foreground/70 hover:text-primary-foreground transition-colors"
-        >
-          <ChevronDown className="w-8 h-8" />
-        </button>
       </div>
+
+      <button
+        onClick={scrollToPackages}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+      >
+        <ChevronDown className="w-8 h-8" />
+      </button>
     </section>
   );
 };

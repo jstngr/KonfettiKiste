@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
   stroke="rgb(250, 204, 66)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-  class="lucide lucide-party-popper w-5 h-5 text-primary">
+  class="w-5 h-5 text-primary">
   <path d="M5.8 11.3 2 22l10.7-3.79"></path>
   <path d="M4 3h.01"></path>
   <path d="M22 8h.01"></path>

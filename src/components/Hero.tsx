@@ -13,7 +13,7 @@ const Hero = () => {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 via-foreground/40 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-foreground/75 via-foreground/65 to-background" />
       </div>
 
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
@@ -26,7 +26,7 @@ const Hero = () => {
           Konfetti<span className="text-secondary">Kiste</span>
         </h1>
 
-        <p className="text-xl md:text-2xl mb-10 text-primary-foreground/90 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-xl md:text-2xl mb-10 text-primary-foreground max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
           Wir bringen die Party zu euch! Hüpfburgen, Popcornmaschinen, Seifenblasen & mehr – 
           für den besten Kindergeburtstag aller Zeiten.
         </p>

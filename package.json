@@ -1,6 +1,6 @@
 {
   "name": "Konfettikiste",
-  "base": "https://jstngr.github.io/KonfettiKiste",
+  "homepage": "https://jstngr.github.io/KonfettiKiste",
   "private": true,
   "version": "0.0.0",
   "type": "module",

@@ -176,19 +176,23 @@ const Booking = ({ selectedAddons, selectedPackage, onPackageChange }: BookingPr
           {selectedAddons.length === 0 && (
             <>
               <div className="border-t border-border" />
-              <div className="flex items-center justify-between bg-muted/40 rounded-2xl p-4">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Sparkles className="w-4 h-4 text-secondary" />
-                  <span>Möchtest du Extras dazubuchen?</span>
+              <div className="rounded-2xl border-2 border-dashed border-secondary/50 bg-secondary/10 p-5 flex flex-col items-center gap-3 text-center">
+                <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-secondary-foreground" />
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground text-sm">Noch keine Extras gewählt</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">Hüpfburg, Popcorn & mehr – perfekt für jede Party!</p>
                 </div>
                 <Button
                   type="button"
                   variant="outline"
                   size="sm"
-                  className="rounded-xl shrink-0"
+                  className="rounded-xl border-secondary/60 hover:bg-secondary/20 w-full max-w-xs"
                   onClick={() => document.getElementById("extras")?.scrollIntoView({ behavior: "smooth" })}
                 >
-                  Extras auswählen
+                  <Sparkles className="w-3.5 h-3.5 mr-1.5" />
+                  Extras entdecken
                 </Button>
               </div>
             </>

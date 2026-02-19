@@ -37,16 +37,20 @@ const Booking = ({ selectedAddons, selectedPackage, onPackageChange }: BookingPr
   const [billingCity, setBillingCity] = useState("");
   const [deliveryResult, setDeliveryResult] = useState<DeliveryResult | null>(null);
   const [deliveryLoading, setDeliveryLoading] = useState(false);
+  const [addressNotFound, setAddressNotFound] = useState(false);
 
   // Debounced delivery fee calculation
   const checkDelivery = useCallback(async (s: string, p: string, c: string) => {
     if (!s || !p || !c || p.length < 4) {
       setDeliveryResult(null);
+      setAddressNotFound(false);
       return;
     }
     setDeliveryLoading(true);
+    setAddressNotFound(false);
     const result = await calculateDeliveryFee(s, p, c);
     setDeliveryResult(result);
+    setAddressNotFound(result === null);
     setDeliveryLoading(false);
   }, []);
 
@@ -142,6 +146,12 @@ const Booking = ({ selectedAddons, selectedPackage, onPackageChange }: BookingPr
                     <span>{deliveryResult.distanceKm} km Entfernung – <strong>Kostenlose Lieferung!</strong> 🎉</span>
                   </>
                 )}
+              </div>
+            )}
+            {!deliveryLoading && addressNotFound && (
+              <div className="rounded-xl p-3 text-sm flex items-start gap-2 bg-destructive/10 text-destructive">
+                <AlertTriangle className="w-4 h-4 mt-0.5 shrink-0" />
+                <span>Adresse nicht gefunden. Bitte überprüfe deine Eingabe (Straße, PLZ, Ort).</span>
               </div>
             )}
           </fieldset>

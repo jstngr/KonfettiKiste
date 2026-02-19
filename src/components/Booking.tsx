@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { format } from "date-fns";
 import { de } from "date-fns/locale";
-import { CalendarIcon, Clock, MapPin, Send, Sparkles } from "lucide-react";
+import { CalendarIcon, Clock, MapPin, Send, Sparkles, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -30,6 +30,10 @@ const Booking = ({ selectedAddons, selectedPackage, onPackageChange }: BookingPr
   const [street, setStreet] = useState("");
   const [plz, setPlz] = useState("");
   const [city, setCity] = useState("");
+  const [differentBilling, setDifferentBilling] = useState(false);
+  const [billingStreet, setBillingStreet] = useState("");
+  const [billingPlz, setBillingPlz] = useState("");
+  const [billingCity, setBillingCity] = useState("");
 
   const packagePrices: Record<string, number> = {
     basis: 89, spass: 149, premium: 249, vip: 399,
@@ -104,6 +108,54 @@ const Booking = ({ selectedAddons, selectedPackage, onPackageChange }: BookingPr
               </div>
             </div>
           </fieldset>
+
+          <div className="border-t border-border" />
+
+          {/* Section: Different billing address */}
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              role="switch"
+              aria-checked={differentBilling}
+              onClick={() => setDifferentBilling(!differentBilling)}
+              className={cn(
+                "relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                differentBilling ? "bg-primary" : "bg-input"
+              )}
+            >
+              <span
+                className={cn(
+                  "pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform",
+                  differentBilling ? "translate-x-5" : "translate-x-0"
+                )}
+              />
+            </button>
+            <label className="text-sm font-semibold text-muted-foreground cursor-pointer" onClick={() => setDifferentBilling(!differentBilling)}>
+              Abweichende Rechnungsadresse
+            </label>
+          </div>
+
+          {differentBilling && (
+            <fieldset className="space-y-4 animate-in slide-in-from-top-2 fade-in duration-300">
+              <legend className="text-base font-bold font-display text-foreground flex items-center gap-2 mb-2">
+                <FileText className="w-4 h-4 text-primary" /> Rechnungsadresse
+              </legend>
+              <div className="space-y-1.5">
+                <label className="text-sm font-semibold text-muted-foreground">Straße & Hausnummer *</label>
+                <Input placeholder="Musterstraße 12" value={billingStreet} onChange={(e) => setBillingStreet(e.target.value)} className="rounded-xl h-11" />
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-sm font-semibold text-muted-foreground">PLZ *</label>
+                  <Input placeholder="50321" value={billingPlz} onChange={(e) => setBillingPlz(e.target.value)} className="rounded-xl h-11" />
+                </div>
+                <div className="space-y-1.5 col-span-2">
+                  <label className="text-sm font-semibold text-muted-foreground">Ort *</label>
+                  <Input placeholder="Brühl" value={billingCity} onChange={(e) => setBillingCity(e.target.value)} className="rounded-xl h-11" />
+                </div>
+              </div>
+            </fieldset>
+          )}
 
           <div className="border-t border-border" />
 

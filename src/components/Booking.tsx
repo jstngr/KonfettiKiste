@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { format } from "date-fns";
 import { de } from "date-fns/locale";
-import { CalendarIcon, Clock, MapPin, Send, Sparkles, FileText } from "lucide-react";
+import { CalendarIcon, Clock, MapPin, Send, Sparkles, FileText, Truck, Loader2, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { calculateDeliveryFee, type DeliveryResult } from "@/lib/delivery";
 import type { AddonSelection } from "@/pages/Index";
 
 const timeSlots = [
@@ -34,19 +35,43 @@ const Booking = ({ selectedAddons, selectedPackage, onPackageChange }: BookingPr
   const [billingStreet, setBillingStreet] = useState("");
   const [billingPlz, setBillingPlz] = useState("");
   const [billingCity, setBillingCity] = useState("");
+  const [deliveryResult, setDeliveryResult] = useState<DeliveryResult | null>(null);
+  const [deliveryLoading, setDeliveryLoading] = useState(false);
+
+  // Debounced delivery fee calculation
+  const checkDelivery = useCallback(async (s: string, p: string, c: string) => {
+    if (!s || !p || !c || p.length < 4) {
+      setDeliveryResult(null);
+      return;
+    }
+    setDeliveryLoading(true);
+    const result = await calculateDeliveryFee(s, p, c);
+    setDeliveryResult(result);
+    setDeliveryLoading(false);
+  }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => checkDelivery(street, plz, city), 800);
+    return () => clearTimeout(timeout);
+  }, [street, plz, city, checkDelivery]);
 
   const packagePrices: Record<string, number> = {
     basis: 89, spass: 149, premium: 249, vip: 399,
   };
 
+  const deliveryFee = deliveryResult?.fee ?? 0;
   const extrasTotal = selectedAddons.reduce((s, a) => s + a.price, 0);
   const packagePrice = selectedPackage ? packagePrices[selectedPackage] : 0;
-  const grandTotal = packagePrice + extrasTotal;
+  const grandTotal = packagePrice + extrasTotal + deliveryFee;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!date || !time || !name || !email || !selectedPackage) {
       toast.error("Bitte fülle alle Pflichtfelder aus.");
+      return;
+    }
+    if (deliveryResult?.tooFar) {
+      toast.error("Die Adresse liegt leider außerhalb unseres Liefergebiets.");
       return;
     }
     toast.success("Anfrage gesendet! Wir melden uns bald bei dir. 🎉");
@@ -84,9 +109,42 @@ const Booking = ({ selectedAddons, selectedPackage, onPackageChange }: BookingPr
               <label className="text-sm font-semibold text-muted-foreground">Telefon</label>
               <Input placeholder="+49 123 456789" value={phone} onChange={(e) => setPhone(e.target.value)} className="rounded-xl h-11" />
             </div>
-          </fieldset>
 
-          <div className="border-t border-border" />
+            {/* Delivery distance info */}
+            {deliveryLoading && (
+              <div className="flex items-center gap-2 text-sm text-muted-foreground animate-pulse">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                Entfernung wird berechnet…
+              </div>
+            )}
+            {!deliveryLoading && deliveryResult && (
+              <div className={cn(
+                "rounded-xl p-3 text-sm flex items-start gap-2",
+                deliveryResult.tooFar
+                  ? "bg-destructive/10 text-destructive"
+                  : deliveryResult.fee > 0
+                    ? "bg-accent/50 text-accent-foreground"
+                    : "bg-primary/10 text-primary"
+              )}>
+                {deliveryResult.tooFar ? (
+                  <>
+                    <AlertTriangle className="w-4 h-4 mt-0.5 shrink-0" />
+                    <span>Die Adresse liegt {deliveryResult.distanceKm} km entfernt – leider außerhalb unseres Liefergebiets (max. 100 km).</span>
+                  </>
+                ) : deliveryResult.fee > 0 ? (
+                  <>
+                    <Truck className="w-4 h-4 mt-0.5 shrink-0" />
+                    <span>{deliveryResult.distanceKm} km Entfernung – Liefergebühr: <strong>{deliveryResult.fee}€</strong> ({deliveryResult.distanceKm - 10} km × 10€)</span>
+                  </>
+                ) : (
+                  <>
+                    <Truck className="w-4 h-4 mt-0.5 shrink-0" />
+                    <span>{deliveryResult.distanceKm} km Entfernung – <strong>Kostenlose Lieferung!</strong> 🎉</span>
+                  </>
+                )}
+              </div>
+            )}
+          </fieldset>
 
           {/* Section: Address */}
           <fieldset className="space-y-4">
@@ -269,6 +327,18 @@ const Booking = ({ selectedAddons, selectedPackage, onPackageChange }: BookingPr
                       <span className="font-bold">{addon.price}€</span>
                     </div>
                   ))}
+                  {deliveryFee > 0 && (
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">🚚 Liefergebühr ({deliveryResult!.distanceKm} km)</span>
+                      <span className="font-bold">{deliveryFee}€</span>
+                    </div>
+                  )}
+                  {deliveryResult && !deliveryResult.tooFar && deliveryFee === 0 && (
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">🚚 Lieferung</span>
+                      <span className="font-bold text-primary">Kostenlos</span>
+                    </div>
+                  )}
                   <div className="border-t border-border pt-3 mt-3 flex justify-between font-bold text-xl">
                     <span>Gesamt</span>
                     <span className="text-gradient-party">{grandTotal}€</span>

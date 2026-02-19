@@ -234,8 +234,8 @@ const Booking = ({
                 deliveryResult.tooFar
                   ? "bg-destructive/10 text-destructive"
                   : deliveryResult.fee > 0
-                    ? "bg-accent/50 text-accent-foreground"
-                    : "bg-primary/10 text-primary",
+                    ? "bg-orange-500/10 text-orange-600 dark:text-orange-400"
+                    : "bg-green-500/10 text-green-600 dark:text-green-400",
               )}
             >
               {deliveryResult.tooFar ? (

@@ -1,4 +1,4 @@
-const BRUHL_CENTER = { lat: 50.831028, lng: 6.894972 };
+const BRUHL_CENTER = { lat: 50.83103, lng: 6.89497 };
 const FREE_RADIUS_KM = 10;
 const PRICE_PER_KM = 10;
 const MAX_DISTANCE_KM = 100;

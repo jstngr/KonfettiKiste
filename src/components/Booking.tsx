@@ -76,7 +76,7 @@ const Booking = ({
 
   // Debounced delivery fee calculation
   const checkDelivery = useCallback(async (s: string, p: string, c: string) => {
-    if (!s || !p || !c || p.length < 4) {
+    if (!s.trim() || !c.trim() || !/^\d{5}$/.test(p)) {
       setDeliveryResult(null);
       setAddressNotFound(false);
       return;

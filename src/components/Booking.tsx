@@ -116,7 +116,7 @@ const Booking = ({
       toast.error("Die Adresse liegt leider außerhalb unseres Liefergebiets.");
       return;
     }
-    toast.success("Anfrage gesendet! Wir melden uns bald bei dir. 🎉");
+    toast.success("Anfrage gesendet! Wir melden uns bei dir. 🎉");
   };
 
   return (
@@ -444,7 +444,7 @@ const Booking = ({
                   type="button"
                   variant="outline"
                   size="sm"
-                  className="rounded-xl border-secondary/60 hover:bg-secondary/20 w-full max-w-xs"
+                  className="rounded-xl border-secondary/60 hover:bg-secondary/20 hover:text-button w-full max-w-xs"
                   onClick={() =>
                     document
                       .getElementById("extras")

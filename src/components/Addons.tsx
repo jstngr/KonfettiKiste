@@ -15,12 +15,42 @@ interface AddonsProps {
 }
 
 const addons: Addon[] = [
-  { name: "Extra Hüpfburg-Stunde", price: 40, description: "Noch mehr Hüpfspaß!", emoji: "🏰" },
-  { name: "Candy Bar", price: 35, description: "Süßigkeiten-Buffet mit Naschereien", emoji: "🍬" },
-  { name: "Glitzer-Tattoos", price: 20, description: "Temporäre Tattoos für alle Kids", emoji: "✨" },
-  { name: "Extra Popcorn-Nachfüllung", price: 10, description: "250g extra Popcorn-Mais", emoji: "🍿" },
-  { name: "LED Partylicht-Set", price: 25, description: "Bunte Lichter für die Partyzone", emoji: "💡" },
-  { name: "Pinata mit Füllung", price: 30, description: "Bunte Pinata inkl. Süßigkeiten", emoji: "🪅" },
+  {
+    name: "Extra Hüpfburg-Stunde",
+    price: 40,
+    description: "Noch mehr Hüpfspaß!",
+    emoji: "🏰",
+  },
+  {
+    name: "Candy Bar",
+    price: 35,
+    description: "Süßigkeiten-Buffet mit Naschereien",
+    emoji: "🍬",
+  },
+  {
+    name: "Glitzer-Tattoos",
+    price: 20,
+    description: "Temporäre Tattoos für alle Kids",
+    emoji: "✨",
+  },
+  {
+    name: "Extra Popcorn-Nachfüllung",
+    price: 10,
+    description: "250g extra Popcorn-Mais",
+    emoji: "🍿",
+  },
+  {
+    name: "LED Partylicht-Set",
+    price: 25,
+    description: "Bunte Lichter für die Partyzone",
+    emoji: "💡",
+  },
+  {
+    name: "Pinata mit Füllung",
+    price: 30,
+    description: "Bunte Pinata inkl. Süßigkeiten",
+    emoji: "🪅",
+  },
 ];
 
 const Addons = ({ onSelectionChange }: AddonsProps) => {
@@ -54,7 +84,8 @@ const Addons = ({ onSelectionChange }: AddonsProps) => {
             Extras & <span className="text-gradient-party">Add-ons</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Mach deine Party noch besonderer! Wähle aus unseren beliebten Extras.
+            Mach deine Party noch besonderer! Wähle aus unseren beliebten
+            Extras.
           </p>
         </div>
 
@@ -67,35 +98,47 @@ const Addons = ({ onSelectionChange }: AddonsProps) => {
                 type="button"
                 onClick={() => toggle(addon.name)}
                 className={cn(
-                  "bg-card rounded-xl border-2 p-5 transition-all duration-200 text-left relative cursor-pointer group",
+                  "bg-card rounded-xl border-2 p-5 transition-all duration-200 text-left relative cursor-pointer group flex flex-col items-start",
                   isSelected
                     ? "border-primary shadow-party ring-2 ring-primary/20"
-                    : "border-border hover:border-primary/40 hover:shadow-md"
+                    : "border-border hover:border-primary/40 hover:shadow-md",
                 )}
               >
                 {/* Checkbox indicator */}
-                <div className={cn(
-                  "absolute top-3 right-3 w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all duration-200",
-                  isSelected
-                    ? "bg-primary border-primary"
-                    : "border-muted-foreground/30 group-hover:border-primary/50"
-                )}>
-                  {isSelected && <Check className="w-4 h-4 text-primary-foreground" />}
+                <div
+                  className={cn(
+                    "absolute top-3 right-3 w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all duration-200",
+                    isSelected
+                      ? "bg-primary border-primary"
+                      : "border-muted-foreground/30 group-hover:border-primary/50",
+                  )}
+                >
+                  {isSelected && (
+                    <Check className="w-4 h-4 text-primary-foreground" />
+                  )}
                 </div>
-                <div className="flex items-start justify-between mb-3 pr-8">
+                <div className="flex items-start justify-between mb-3 pr-8 w-full items-center">
                   <div>
                     <span className="text-2xl mr-2">{addon.emoji}</span>
-                    <span className="font-bold font-display text-lg">{addon.name}</span>
+                    <span className="font-bold font-display text-lg">
+                      {addon.name}
+                    </span>
                   </div>
-                  <span className="font-bold text-primary text-lg">+{addon.price}€</span>
+                  <span className="font-bold text-primary text-lg">
+                    +{addon.price}€
+                  </span>
                 </div>
-                <p className="text-sm text-muted-foreground mb-3">{addon.description}</p>
-                <span className={cn(
-                  "text-xs font-semibold px-3 py-1 rounded-full transition-colors",
-                  isSelected
-                    ? "bg-primary/10 text-primary"
-                    : "bg-muted text-muted-foreground group-hover:text-primary"
-                )}>
+                <p className="text-sm text-muted-foreground mb-3">
+                  {addon.description}
+                </p>
+                <span
+                  className={cn(
+                    "text-xs font-semibold px-3 py-1 rounded-full transition-colors mt-auto",
+                    isSelected
+                      ? "bg-primary/10 text-primary"
+                      : "bg-muted text-muted-foreground group-hover:text-primary",
+                  )}
+                >
                   {isSelected ? "✓ Ausgewählt" : "Auswählen"}
                 </span>
               </button>
@@ -106,7 +149,9 @@ const Addons = ({ onSelectionChange }: AddonsProps) => {
         {total > 0 && (
           <div className="mt-8 text-center bg-card rounded-xl border-2 border-primary p-4 shadow-party">
             <span className="text-muted-foreground">Extras gesamt: </span>
-            <span className="text-2xl font-bold font-display text-primary">+{total}€</span>
+            <span className="text-2xl font-bold font-display text-primary">
+              +{total}€
+            </span>
           </div>
         )}
       </div>

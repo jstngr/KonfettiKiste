@@ -20,7 +20,7 @@ const Hero = () => {
         <div className="inline-flex items-center gap-2 bg-card/90 backdrop-blur-sm rounded-full px-5 py-2 mb-8 shadow-party">
           <PartyPopper className="w-5 h-5 text-primary" />
           <span className="text-sm font-semibold text-foreground">
-            Unvergessliche Kinderpartys in Brühl & Umgebung
+            Unvergessliche Partys in Brühl & Umgebung
           </span>
         </div>
 
@@ -30,7 +30,7 @@ const Hero = () => {
 
         <p className="text-xl md:text-2xl mb-10 text-primary-foreground max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
           Wir bringen die Party zu euch! Hüpfburgen, Popcornmaschinen,
-          Seifenblasen & mehr – für den besten Kindergeburtstag aller Zeiten.
+          Seifenblasen & mehr – für die beste Party aller Zeiten.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

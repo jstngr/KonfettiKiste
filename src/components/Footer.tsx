@@ -13,7 +13,7 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-background/70 text-sm leading-relaxed">
-              Wir machen Kindergeburtstage unvergesslich! Equipment, Erlebnisse & jede Menge Spaß –
+              Wir machen Partys unvergesslich! Equipment, Erlebnisse & jede Menge Spaß –
               direkt zu euch nach Hause geliefert.
             </p>
           </div>

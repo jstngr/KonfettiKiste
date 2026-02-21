@@ -1,6 +1,6 @@
 const BRUHL_CENTER = { lat: 50.83103, lng: 6.89497 };
 const FREE_RADIUS_KM = 10;
-const PRICE_PER_KM = 10;
+const PRICE_PER_KM = 5;
 const MAX_DISTANCE_KM = 100;
 
 function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): number {

@@ -292,7 +292,7 @@ const Booking = ({
                       <span>
                         {deliveryResult.distanceKm} km Entfernung – Liefergebühr:{" "}
                         <strong>{deliveryResult.fee}€</strong> (
-                        {deliveryResult.distanceKm - 10} km × 10€)
+                        {deliveryResult.distanceKm - 10} km × 5€)
                       </span>
                     </>
                   ) : (

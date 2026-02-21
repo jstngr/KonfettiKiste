@@ -37,7 +37,7 @@ const packages: Package[] = [
       "Alles aus dem Basis-Paket",
       "Popcornmaschine mit Zutaten",
       "Musikbox mit Partylichtern",
-      "Kinderspiele-Set (Sackhüpfen & Co.)",
+      "Spiele-Set (Sackhüpfen & Co.)",
       "2 Stunden Mietdauer",
     ],
   },
@@ -66,7 +66,7 @@ const packages: Package[] = [
       "Alles aus dem Premium-Paket",
       "XXL Hüpfburg mit Rutsche",
       "Slush-Eis-Maschine",
-      "Kinderschminken-Set",
+      "Schminken-Set",
       "Persönlicher Party-Betreuer",
       "4 Stunden Mietdauer",
     ],
@@ -86,7 +86,7 @@ const Packages = ({ onBookPackage }: PackagesProps) => {
             Unsere <span className="text-gradient-party">Pakete</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Von klein bis groß – wähle das perfekte Paket für euren Kindergeburtstag.
+            Von klein bis groß – wähle das perfekte Paket für eure Party.
             Jedes Paket kann mit Extras erweitert werden!
           </p>
         </div>

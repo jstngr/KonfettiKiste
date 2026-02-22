@@ -5,24 +5,42 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import { firebaseConfig } from "./firebase";
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { useEffect } from "react";
+import { trackVisit } from "./lib/analytics";
+
+import { CookieBanner } from "./components/CookieBanner";
+import { useConsent } from "./hooks/useConsent";
 
 const queryClient = new QueryClient();
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-console.log("app", app);
-const analytics = getAnalytics(app);
+// Get the correct basename for React Router
+// If Vite's base is relative (e.g., "./"), React Router will fail to match URLs if we pass it directly.
+// In that case, we default to "/" or the actual subfolder if needed.
+const getBasename = () => {
+  const base = import.meta.env.BASE_URL;
+  if (base === "./" || base === "") {
+    // In GH pages with custom domain, we are at the root
+    return "/";
+  }
+  return base;
+};
 
 const App = () => {
+  const { consent } = useConsent();
+
+  useEffect(() => {
+    if (consent === true) {
+      trackVisit();
+    }
+  }, [consent]);
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter basename={import.meta.env.BASE_URL}>
+        <CookieBanner />
+        <BrowserRouter basename={getBasename()}>
           <Routes>
             <Route path="/" element={<Index />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

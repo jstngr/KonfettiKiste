@@ -20,12 +20,13 @@ const Hero = () => {
           </span>
         </div>
 
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary-foreground drop-shadow-lg font-display leading-tight">
-          Unvergessliche Party-Erlebnisse für Kindergeburtstage und private Feiern
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary-foreground drop-shadow-lg font-display">
+          Konfetti<span className="text-secondary">Kiste</span>
         </h1>
 
         <p className="text-lg md:text-xl mb-10 text-primary-foreground/90 max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-          Mit der KonfettiKiste Photo Booth und liebevoll gestalteten Party Paketen wird Ihre Feier zu einem echten Highlight.
+          Mit der KonfettiKiste Photo Booth und liebevoll gestalteten Party
+          Paketen wird Ihre Feier zu einem echten Highlight.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -55,7 +56,11 @@ const Hero = () => {
       </div>
 
       <button
-        onClick={() => document.getElementById("highlights")?.scrollIntoView({ behavior: "smooth" })}
+        onClick={() =>
+          document
+            .getElementById("highlights")
+            ?.scrollIntoView({ behavior: "smooth" })
+        }
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce text-primary-foreground/70 hover:text-primary-foreground transition-colors"
       >
         <ChevronDown className="w-8 h-8" />

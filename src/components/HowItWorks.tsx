@@ -1,55 +1,66 @@
-import { PartyPopper, Sparkles, Heart } from "lucide-react";
+import { Search, Sparkles, PartyPopper } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const steps = [
   {
-    number: "1",
+    icon: <Search className="w-8 h-8" />,
     title: "Erlebnis wählen",
-    description: "Wählt das Paket, das perfekt zu eurer Party passt.",
-    icon: PartyPopper,
+    description: "Wählen Sie Ihre Photo Booth, ein Party Paket oder beides – ganz nach Ihren Wünschen.",
+    color: "bg-primary/10 text-primary",
   },
   {
-    number: "2",
+    icon: <Sparkles className="w-8 h-8" />,
     title: "Extras hinzufügen",
-    description:
-      "Erweitert eure Party mit besonderen Highlights und individuellen Add-ons.",
-    icon: Sparkles,
+    description: "Ballonbogen, Popcorn, Zuckerwatte – machen Sie Ihre Feier noch besonderer.",
+    color: "bg-secondary/10 text-secondary",
   },
   {
-    number: "3",
-    title: "Feiern",
-    description: "Wir bringen den Spaß – ihr genießt den Moment.",
-    icon: Heart,
+    icon: <PartyPopper className="w-8 h-8" />,
+    title: "Feiern & Genießen",
+    description: "Wir liefern, bauen auf und kümmern uns um alles. Sie genießen einfach die Party!",
+    color: "bg-coral/10 text-coral",
   },
 ];
 
 const HowItWorks = () => {
   return (
-    <section className="py-24 px-4 bg-muted/30">
+    <section className="py-24 px-4 bg-muted/50">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold font-display mb-4">
-            So funktioniert<span className="text-gradient-party"> es</span>
+            So <span className="text-gradient-party">funktioniert's</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            In nur drei Schritten zur unvergesslichen Party.
+            In nur 3 Schritten zur perfekten Party – einfacher geht's nicht.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {steps.map((step) => (
-            <div key={step.number} className="text-center relative">
-              <div className="w-20 h-20 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center mx-auto mb-6">
-                <step.icon className="w-9 h-9 text-primary" />
+          {steps.map((step, i) => (
+            <div key={step.title} className="text-center">
+              <div className="relative inline-block mb-6">
+                <div className={`w-20 h-20 rounded-2xl ${step.color} flex items-center justify-center mx-auto`}>
+                  {step.icon}
+                </div>
+                <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-foreground text-background flex items-center justify-center text-sm font-bold">
+                  {i + 1}
+                </div>
               </div>
-              <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 text-6xl font-bold text-primary/10 font-display pointer-events-none select-none">
-                {step.number}
-              </span>
-              <h3 className="text-xl font-bold font-display mb-2">
-                {step.title}
-              </h3>
+              <h3 className="text-xl font-bold font-display mb-2">{step.title}</h3>
               <p className="text-muted-foreground">{step.description}</p>
             </div>
           ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Button
+            size="lg"
+            className="bg-gradient-party shadow-party hover:scale-105 transition-transform"
+            asChild
+          >
+            <Link to="/kontakt">Termin anfragen</Link>
+          </Button>
         </div>
       </div>
     </section>

@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import Packages from "@/components/Packages";
 import Addons from "@/components/Addons";
 import HowItWorks from "@/components/HowItWorks";
+import Trust from "@/components/Trust";
 import Booking from "@/components/Booking";
 import DeliveryInfo from "@/components/DeliveryInfo";
 import Footer from "@/components/Footer";
@@ -28,6 +29,7 @@ const Index = () => {
       }} />
       <Addons onSelectionChange={setSelectedAddons} />
       <HowItWorks />
+      <Trust />
       <div id="lieferung">
         <DeliveryInfo />
       </div>

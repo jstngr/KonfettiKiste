@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Packages from "@/components/Packages";
 import Addons from "@/components/Addons";
+import HowItWorks from "@/components/HowItWorks";
 import Booking from "@/components/Booking";
 import DeliveryInfo from "@/components/DeliveryInfo";
 import Footer from "@/components/Footer";
@@ -26,6 +27,7 @@ const Index = () => {
         setTimeout(() => document.getElementById("buchung")?.scrollIntoView({ behavior: "smooth" }), 50);
       }} />
       <Addons onSelectionChange={setSelectedAddons} />
+      <HowItWorks />
       <div id="lieferung">
         <DeliveryInfo />
       </div>

@@ -14,61 +14,61 @@ interface Package {
 
 const packages: Package[] = [
   {
-    name: "Basis",
-    price: "89",
-    description: "Ein toller Start für kleine Feiern",
-    icon: <PartyPopper className="w-8 h-8" />,
+    name: "Spark Party",
+    price: "149",
+    description: "Geburtstagsmagie in wenigen Minuten",
+    icon: <Sparkles className="w-8 h-8" />,
     color: "bg-accent text-accent-foreground",
     features: [
+      "JBL Musikbox",
+      "Mini Disco Lichter",
       "Seifenblasenmaschine",
-      "Partydekoration (Ballons & Girlanden)",
-      "Kindgerechtes Geschirr-Set",
-      "Partymusik-Playlist (Bluetooth-Box)",
-      "Auf- & Abbau inklusive",
+      "Bis zu 3 Stunden",
     ],
   },
   {
-    name: "Spaß",
-    price: "149",
-    description: "Mehr Action, mehr Freude",
-    icon: <Sparkles className="w-8 h-8" />,
+    name: "Sweet Fun Party",
+    price: "249",
+    description: "Tanzen, lachen und süße Momente",
+    icon: <PartyPopper className="w-8 h-8" />,
     color: "bg-secondary text-secondary-foreground",
     features: [
-      "Alles aus dem Basis-Paket",
-      "Popcornmaschine mit Zutaten",
-      "Musikbox mit Partylichtern",
-      "Spiele-Set (Sackhüpfen & Co.)",
-      "2 Stunden Mietdauer",
+      "JBL Musikbox",
+      "Mini Disco Lichter",
+      "Zuckerwattemaschine",
+      "Popcornmaschine",
+      "Bis zu 3 Stunden",
     ],
   },
   {
-    name: "Premium",
-    price: "249",
-    description: "Das volle Party-Erlebnis",
+    name: "Mini Festival",
+    price: "449",
+    description: "Ein echtes Geburtstags-Event",
     icon: <Star className="w-8 h-8" />,
     color: "bg-coral text-coral-foreground",
     popular: true,
     features: [
-      "Alles aus dem Spaß-Paket",
-      "Hüpfburg (3x3m)",
-      "Zuckerwattemaschine",
-      "Profi-Fotobox mit Requisiten",
-      "3 Stunden Mietdauer",
+      "Hüpfburg",
+      "JBL Musikbox",
+      "Mini Disco Lichter",
+      "Popcornmaschine",
+      "Bis zu 4 Stunden",
     ],
   },
   {
-    name: "VIP",
-    price: "399",
-    description: "Die ultimative Traumparty",
+    name: "Ultimate Birthday",
+    price: "699",
+    description: "Das unvergessliche Geburtstags-Erlebnis",
     icon: <Crown className="w-8 h-8" />,
     color: "bg-lavender text-lavender-foreground",
     features: [
-      "Alles aus dem Premium-Paket",
-      "XXL Hüpfburg mit Rutsche",
-      "Slush-Eis-Maschine",
-      "Schminken-Set",
-      "Persönlicher Party-Betreuer",
-      "4 Stunden Mietdauer",
+      "Hüpfburg",
+      "Schaummaschine",
+      "JBL Musikbox",
+      "Mini Disco Lichter",
+      "Nebelmaschine",
+      "Zuckerwatte ODER Popcorn",
+      "Bis zu 5 Stunden",
     ],
   },
 ];
@@ -83,11 +83,10 @@ const Packages = ({ onBookPackage }: PackagesProps) => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold font-display mb-4">
-            Unsere <span className="text-gradient-party">Pakete</span>
+            Unsere <span className="text-gradient-party">Erlebnisse</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Von klein bis groß – wähle das perfekte Paket für eure Party.
-            Jedes Paket kann mit Extras erweitert werden!
+            Von kleinen Feiern bis zu spektakulären Geburtstagen – wählt euer perfektes Erlebnis und erweitert es mit Extras.
           </p>
         </div>
 
@@ -135,7 +134,7 @@ const Packages = ({ onBookPackage }: PackagesProps) => {
                     : ""
                 )}
                 variant={pkg.popular ? "default" : "outline"}
-                onClick={() => onBookPackage(pkg.name.toLowerCase())}
+                onClick={() => onBookPackage(pkg.name.toLowerCase().replace(/\s+/g, "-"))}
               >
                 Jetzt buchen
               </Button>

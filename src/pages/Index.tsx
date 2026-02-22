@@ -15,7 +15,7 @@ export interface AddonSelection {
 
 const Index = () => {
   const [selectedAddons, setSelectedAddons] = useState<AddonSelection[]>([]);
-  const [selectedPackage, setSelectedPackage] = useState<string>("premium");
+  const [selectedPackage, setSelectedPackage] = useState<string>("mini-festival");
 
   return (
     <div className="min-h-screen bg-background">

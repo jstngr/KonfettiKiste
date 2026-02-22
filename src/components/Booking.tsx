@@ -97,10 +97,10 @@ const Booking = ({
   }, [street, plz, city, checkDelivery]);
 
   const packagePrices: Record<string, number> = {
-    basis: 89,
-    spass: 149,
-    premium: 249,
-    vip: 399,
+    "spark-party": 149,
+    "sweet-fun-party": 249,
+    "mini-festival": 449,
+    "ultimate-birthday": 699,
   };
 
   const deliveryFee = deliveryResult?.fee ?? 0;
@@ -404,10 +404,10 @@ const Booking = ({
                       <SelectValue placeholder="Paket auswählen..." />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="basis">Basis – 89€</SelectItem>
-                      <SelectItem value="spass">Spaß – 149€</SelectItem>
-                      <SelectItem value="premium">Premium – 249€</SelectItem>
-                      <SelectItem value="vip">VIP – 399€</SelectItem>
+                      <SelectItem value="spark-party">Spark Party – 149€</SelectItem>
+                      <SelectItem value="sweet-fun-party">Sweet Fun Party – 249€</SelectItem>
+                      <SelectItem value="mini-festival">Mini Festival – 449€</SelectItem>
+                      <SelectItem value="ultimate-birthday">Ultimate Birthday – 699€</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

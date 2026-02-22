@@ -119,7 +119,7 @@ const PackageCard = ({ pkg }: { pkg: PackageData }) => (
     )}
   >
     {pkg.popular && (
-      <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-party text-primary-foreground text-sm font-bold px-4 py-1 rounded-full flex items-center gap-1">
+      <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10 bg-gradient-party text-primary-foreground text-sm font-bold px-4 py-1 rounded-full flex items-center gap-1 whitespace-nowrap shadow-md">
         <Star className="w-3.5 h-3.5" /> Bestseller
       </div>
     )}

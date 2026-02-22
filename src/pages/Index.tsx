@@ -42,10 +42,7 @@ const Index = () => {
               </Button>
             </div>
 
-            <div className="bg-card rounded-2xl border-2 border-primary p-8 text-center hover:-translate-y-2 hover:shadow-card-hover transition-all duration-300 shadow-party group">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-party text-primary-foreground text-sm font-bold px-4 py-1 rounded-full relative">
-                Beliebt
-              </div>
+            <div className="bg-card rounded-2xl border-2 border-border p-8 text-center hover:-translate-y-2 hover:shadow-card-hover transition-all duration-300 group">
               <div className="w-16 h-16 rounded-2xl bg-coral/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-coral/20 transition-colors">
                 <PartyPopper className="w-8 h-8 text-coral" />
               </div>
@@ -54,7 +51,7 @@ const Index = () => {
                 Komplett-Pakete für Indoor, Sommer, Nacht und Business Events.
               </p>
               <p className="text-2xl font-bold font-display text-primary mb-4">Ab 179€</p>
-              <Button asChild className="w-full bg-gradient-party shadow-party hover:scale-105 transition-transform">
+              <Button asChild className="w-full">
                 <Link to="/party-pakete">
                   Pakete ansehen <ArrowRight className="w-4 h-4 ml-1" />
                 </Link>

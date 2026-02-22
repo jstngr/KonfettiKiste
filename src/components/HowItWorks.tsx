@@ -4,13 +4,14 @@ const steps = [
   {
     number: "1",
     title: "Erlebnis wählen",
-    description: "Wählt das Paket, das zu eurer Feier passt.",
+    description: "Wählt das Paket, das perfekt zu eurer Party passt.",
     icon: PartyPopper,
   },
   {
     number: "2",
     title: "Extras hinzufügen",
-    description: "Gestaltet die Party individuell mit optionalen Add-ons.",
+    description:
+      "Erweitert eure Party mit besonderen Highlights und individuellen Add-ons.",
     icon: Sparkles,
   },
   {
@@ -30,7 +31,7 @@ const HowItWorks = () => {
             So funktioniert<span className="text-gradient-party"> es</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            In nur drei Schritten zur perfekten Party.
+            In nur drei Schritten zur unvergesslichen Party.
           </p>
         </div>
 
@@ -43,7 +44,9 @@ const HowItWorks = () => {
               <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 text-6xl font-bold text-primary/10 font-display pointer-events-none select-none">
                 {step.number}
               </span>
-              <h3 className="text-xl font-bold font-display mb-2">{step.title}</h3>
+              <h3 className="text-xl font-bold font-display mb-2">
+                {step.title}
+              </h3>
               <p className="text-muted-foreground">{step.description}</p>
             </div>
           ))}

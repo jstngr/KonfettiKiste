@@ -25,12 +25,14 @@ const Hero = () => {
         </div>
 
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary-foreground drop-shadow-lg font-display">
-          Unvergessliche Geburtstage{" "}
-          <span className="text-secondary">– ganz ohne Stress</span>
+          Konfetti<span className="text-secondary">Kiste</span>
         </h1>
 
         <p className="text-xl md:text-2xl mb-10 text-primary-foreground max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
           Wir bringen den Spaß. Ihr genießt den Moment.
+          <br />
+          Hüpfburgen, Popcornmaschinen, Seifenblasen & mehr – für die beste
+          Party aller Zeiten.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

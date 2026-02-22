@@ -3,17 +3,17 @@ import { Star, Quote } from "lucide-react";
 const testimonials = [
   {
     name: "Sarah M.",
-    text: "Die Party war der absolute Wahnsinn! Die Kinder hatten so viel Spaß mit der Hüpfburg und der Zuckerwattemaschine. Absolut stressfrei für uns Eltern!",
+    text: "Die Photo Booth war das absolute Highlight! Die Kinder hatten so viel Spaß und die Ausdrucke sind wunderschöne Erinnerungen.",
     rating: 5,
   },
   {
     name: "Thomas K.",
-    text: "Mini Festival gebucht und es war jeden Cent wert. Aufbau, Einweisung, Abbau – alles perfekt organisiert. Nächstes Jahr wieder!",
+    text: "Konfetti Party gebucht und es war perfekt organisiert. Die Photo Booth mit Sofortdruck hat alle begeistert. Nächstes Jahr wieder!",
     rating: 5,
   },
   {
     name: "Lisa R.",
-    text: "Wir hatten die Foam Party als Add-on und die Gäste reden heute noch davon. Einfach genial!",
+    text: "Tolles Business-Event mit der KonfettiKiste Photo Booth. Professionell, hochwertig und unsere Mitarbeiter reden heute noch davon!",
     rating: 5,
   },
 ];
@@ -69,7 +69,7 @@ const Trust = () => {
           <span className="hidden md:inline text-muted-foreground/30">|</span>
           <span>100+ glückliche Gäste</span>
           <span className="hidden md:inline text-muted-foreground/30">|</span>
-          <span>Brühl & Umgebung</span>
+          <span>Köln, Brühl & Umgebung</span>
         </div>
       </div>
     </section>

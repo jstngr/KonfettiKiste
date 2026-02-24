@@ -46,7 +46,7 @@ const App = () => {
     }
   }, [consent]);
 
-  if (window.location.origin.includes("konfettikiste.com")) {
+  if (window.location.origin.includes("akonfettikiste.com")) {
     return (
       <div className="min-h-screen bg-background">
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">

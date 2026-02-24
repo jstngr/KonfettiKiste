@@ -41,7 +41,7 @@ const PartyCartFloat = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setOpen(true)}
-          className="fixed bottom-6 right-6 z-40 flex items-center gap-3 bg-gradient-party text-primary-foreground px-5 py-3.5 rounded-2xl shadow-party hover:shadow-card-hover transition-shadow"
+          className="fixed drop-shadow-lg  bottom-6 right-6 z-40 flex items-center gap-3 bg-gradient-party text-primary-foreground px-5 py-3.5 rounded-2xl shadow-party hover:shadow-card-hover transition-shadow"
         >
           <PartyPopper className="w-5 h-5" />
           <div className="text-left">
@@ -111,7 +111,9 @@ const PartyCartFloat = () => {
 
           <DrawerFooter>
             <div className="flex items-center justify-between mb-3">
-              <span className="text-sm text-muted-foreground">Zwischensumme</span>
+              <span className="text-sm text-muted-foreground">
+                Zwischensumme
+              </span>
               <span className="text-2xl font-bold font-display text-gradient-party">
                 {totalPrice}€
               </span>

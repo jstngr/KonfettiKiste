@@ -29,7 +29,7 @@ const Hero = () => {
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
           className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary-foreground drop-shadow-lg font-display"
         >
           Konfetti<span className="text-secondary">Kiste</span>
@@ -38,7 +38,7 @@ const Hero = () => {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
           className="text-lg md:text-xl mb-10 text-primary-foreground/90 max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
         >
           Mit der Fotobox und liebevoll gestalteten Party Paketen wird Ihre
@@ -48,7 +48,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Button
@@ -79,7 +79,7 @@ const Hero = () => {
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 1.2 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
         onClick={() =>
           document
             .getElementById("highlights")

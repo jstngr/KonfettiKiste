@@ -1,4 +1,5 @@
 import { Star, Quote } from "lucide-react";
+import FadeIn, { StaggerContainer, StaggerItem } from "@/components/animations/FadeIn";
 
 const testimonials = [
   {
@@ -22,39 +23,40 @@ const Trust = () => {
   return (
     <section className="py-24 px-4 bg-muted/30">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16">
+        <FadeIn className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold font-display mb-4">
             Das sagen<span className="text-gradient-party"> unsere Gäste</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Echte Erfahrungen von echten Familien.
           </p>
-        </div>
+        </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8" staggerDelay={0.12}>
           {testimonials.map((t) => (
-            <div
+            <StaggerItem
               key={t.name}
-              className="bg-card rounded-2xl border p-8 relative"
             >
-              <Quote className="w-8 h-8 text-primary/20 absolute top-6 right-6" />
-              <div className="flex gap-1 mb-4">
-                {Array.from({ length: t.rating }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-5 h-5 fill-secondary text-secondary"
-                  />
-                ))}
+              <div className="bg-card rounded-2xl border p-8 relative h-full">
+                <Quote className="w-8 h-8 text-primary/20 absolute top-6 right-6" />
+                <div className="flex gap-1 mb-4">
+                  {Array.from({ length: t.rating }).map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-5 h-5 fill-secondary text-secondary"
+                    />
+                  ))}
+                </div>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  {t.text}
+                </p>
+                <p className="font-bold font-display">{t.name}</p>
               </div>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                {t.text}
-              </p>
-              <p className="font-bold font-display">{t.name}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-muted-foreground text-sm">
+        <FadeIn className="mt-12 flex flex-wrap items-center justify-center gap-8 text-muted-foreground text-sm" delay={0.2}>
           <div className="flex items-center gap-2">
             <div className="flex gap-0.5">
               {Array.from({ length: 5 }).map((_, i) => (
@@ -70,7 +72,7 @@ const Trust = () => {
           <span>100+ glückliche Gäste</span>
           <span className="hidden md:inline text-muted-foreground/30">|</span>
           <span>Köln, Brühl & Umgebung</span>
-        </div>
+        </FadeIn>
       </div>
     </section>
   );

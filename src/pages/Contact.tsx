@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Send, MessageCircle, Phone, Mail, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import FadeIn from "@/components/animations/FadeIn";
 
 const Contact = () => {
   const [inquiryMode, setInquiryMode] = useState(false);
@@ -35,70 +36,72 @@ const Contact = () => {
 
       <section className="pt-32 pb-24 px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
+          <FadeIn className="text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-bold font-display mb-4">
               Termin <span className="text-gradient-party">anfragen</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Schreiben Sie uns oder rufen Sie an – wir freuen uns auf Ihre Anfrage!
             </p>
-          </div>
+          </FadeIn>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Contact Info */}
-            <div className="space-y-6">
-              <div className="bg-card rounded-2xl border-2 border-border p-6">
-                <h3 className="font-bold font-display text-lg mb-4">Kontaktdaten</h3>
-                <ul className="space-y-4 text-sm">
-                  <li className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                      <Mail className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-muted-foreground">E-Mail</p>
-                      <p className="font-semibold">hallo@konfettikiste.de</p>
-                    </div>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
-                      <Phone className="w-5 h-5 text-accent" />
-                    </div>
-                    <div>
-                      <p className="text-muted-foreground">Telefon</p>
-                      <p className="font-semibold">+49 2232 123456</p>
-                    </div>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0">
-                      <MapPin className="w-5 h-5 text-secondary" />
-                    </div>
-                    <div>
-                      <p className="text-muted-foreground">Standort</p>
-                      <p className="font-semibold">Köln / Brühl, NRW</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+            <FadeIn direction="left" delay={0.1}>
+              {/* Contact Info */}
+              <div className="space-y-6">
+                <div className="bg-card rounded-2xl border-2 border-border p-6">
+                  <h3 className="font-bold font-display text-lg mb-4">Kontaktdaten</h3>
+                  <ul className="space-y-4 text-sm">
+                    <li className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                        <Mail className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-muted-foreground">E-Mail</p>
+                        <p className="font-semibold">hallo@konfettikiste.de</p>
+                      </div>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+                        <Phone className="w-5 h-5 text-accent" />
+                      </div>
+                      <div>
+                        <p className="text-muted-foreground">Telefon</p>
+                        <p className="font-semibold">+49 2232 123456</p>
+                      </div>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0">
+                        <MapPin className="w-5 h-5 text-secondary" />
+                      </div>
+                      <div>
+                        <p className="text-muted-foreground">Standort</p>
+                        <p className="font-semibold">Köln / Brühl, NRW</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
 
-              {/* WhatsApp CTA */}
-              <a
-                href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 bg-[hsl(142,70%,45%)] text-white rounded-2xl p-5 hover:scale-[1.02] transition-transform shadow-lg group"
-              >
-                <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center shrink-0">
-                  <MessageCircle className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="font-bold text-lg">Auf WhatsApp schreiben</p>
-                  <p className="text-white/80 text-sm">Schnelle Antwort garantiert!</p>
-                </div>
-              </a>
-            </div>
+                {/* WhatsApp CTA */}
+                <a
+                  href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 bg-[hsl(142,70%,45%)] text-white rounded-2xl p-5 hover:scale-[1.02] transition-transform shadow-lg group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center shrink-0">
+                    <MessageCircle className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-lg">Auf WhatsApp schreiben</p>
+                    <p className="text-white/80 text-sm">Schnelle Antwort garantiert!</p>
+                  </div>
+                </a>
+              </div>
+            </FadeIn>
 
             {/* Form */}
-            <div className="lg:col-span-2">
+            <FadeIn direction="right" delay={0.2} className="lg:col-span-2">
               <form
                 onSubmit={handleSubmit}
                 className="bg-card rounded-3xl border border-border p-6 md:p-10 shadow-party space-y-6"
@@ -222,7 +225,7 @@ const Contact = () => {
                   {inquiryMode ? "Nachricht senden" : "Anfrage senden"}
                 </Button>
               </form>
-            </div>
+            </FadeIn>
           </div>
         </div>
       </section>

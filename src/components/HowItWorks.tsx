@@ -1,6 +1,7 @@
 import { Search, Sparkles, PartyPopper } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import FadeIn, { StaggerContainer, StaggerItem } from "@/components/animations/FadeIn";
 
 const steps = [
   {
@@ -30,18 +31,18 @@ const HowItWorks = () => {
   return (
     <section className="py-24 px-4 bg-muted/50">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16">
+        <FadeIn className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold font-display mb-4">
             So <span className="text-gradient-party">funktioniert's</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             In nur 3 Schritten zur perfekten Party – einfacher geht's nicht.
           </p>
-        </div>
+        </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8" staggerDelay={0.15}>
           {steps.map((step, i) => (
-            <div key={step.title} className="text-center">
+            <StaggerItem key={step.title} className="text-center">
               <div className="relative inline-block mb-6">
                 <div
                   className={`w-20 h-20 rounded-2xl ${step.color} flex items-center justify-center mx-auto`}
@@ -56,11 +57,11 @@ const HowItWorks = () => {
                 {step.title}
               </h3>
               <p className="text-muted-foreground">{step.description}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
-        <div className="text-center mt-12">
+        <FadeIn className="text-center mt-12" delay={0.3}>
           <Button
             size="lg"
             className="bg-gradient-party shadow-party hover:scale-105 transition-transform"
@@ -68,7 +69,7 @@ const HowItWorks = () => {
           >
             <Link to="/kontakt">Termin anfragen</Link>
           </Button>
-        </div>
+        </FadeIn>
       </div>
     </section>
   );

@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import FadeIn, { StaggerContainer, StaggerItem } from "@/components/animations/FadeIn";
 
 const addons = [
   {
@@ -63,7 +64,7 @@ const AddonsPage = () => {
 
       <section className="pt-32 pb-24 px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
+          <FadeIn className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-secondary/10 rounded-full px-5 py-2 mb-6">
               <Sparkles className="w-5 h-5 text-secondary" />
               <span className="text-sm font-semibold text-secondary-foreground">
@@ -79,43 +80,42 @@ const AddonsPage = () => {
               Machen Sie Ihre Feier noch besonderer mit unseren handverlesenen
               Premium Add-ons.
             </p>
-          </div>
+          </FadeIn>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.08}>
             {addons.map((addon) => (
-              <div
-                key={addon.name}
-                className="bg-card rounded-2xl border-2 border-border p-6 hover:border-primary/40 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 flex flex-col"
-              >
-                <div className="text-4xl mb-4">{addon.emoji}</div>
-                <h3 className="text-xl font-bold font-display mb-2">
-                  {addon.name}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4 flex-1">
-                  {addon.description}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold font-display text-primary">
-                    +{addon.price}€
-                  </span>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    asChild
-                    className="rounded-xl"
-                  >
-                    <Link to="/kontakt">Anfragen</Link>
-                  </Button>
+              <StaggerItem key={addon.name}>
+                <div className="bg-card rounded-2xl border-2 border-border p-6 hover:border-primary/40 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+                  <div className="text-4xl mb-4">{addon.emoji}</div>
+                  <h3 className="text-xl font-bold font-display mb-2">
+                    {addon.name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4 flex-1">
+                    {addon.description}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-2xl font-bold font-display text-primary">
+                      +{addon.price}€
+                    </span>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      asChild
+                      className="rounded-xl"
+                    >
+                      <Link to="/kontakt">Anfragen</Link>
+                    </Button>
+                  </div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* CTA */}
       <section className="py-20 px-4 bg-muted/50">
-        <div className="max-w-3xl mx-auto text-center">
+        <FadeIn className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
             Add-ons mit einem Paket kombinieren?
           </h2>
@@ -135,7 +135,7 @@ const AddonsPage = () => {
               <Link to="/kontakt">Termin anfragen</Link>
             </Button>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       <Footer />

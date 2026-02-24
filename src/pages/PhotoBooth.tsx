@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Check, Camera, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import FadeIn, { StaggerContainer, StaggerItem } from "@/components/animations/FadeIn";
 
 const includes = [
   "DSLR Kamera in Studioqualität",
@@ -28,7 +29,7 @@ const PhotoBooth = () => {
 
       <section className="pt-32 pb-24 px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
+          <FadeIn className="text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-bold font-display mb-6">
               Das <span className="text-gradient-party">Fotobox</span> Erlebnis
             </h1>
@@ -38,44 +39,44 @@ const PhotoBooth = () => {
               hochwertige Fotos aufnehmen und direkt Ausdrucke mit nach Hause
               nehmen.
             </p>
-          </div>
+          </FadeIn>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Includes */}
-            <div className="bg-card rounded-3xl border-2 border-border p-8 md:p-10">
-              <h2 className="text-2xl font-bold font-display mb-6">
-                Inklusive Leistungen
-              </h2>
-              <ul className="space-y-4">
-                {includes.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="w-4 h-4 text-accent" />
-                    </div>
-                    <span className="text-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
+            <FadeIn direction="left">
+              <div className="bg-card rounded-3xl border-2 border-border p-8 md:p-10">
+                <h2 className="text-2xl font-bold font-display mb-6">
+                  Inklusive Leistungen
+                </h2>
+                <ul className="space-y-4">
+                  {includes.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center shrink-0 mt-0.5">
+                        <Check className="w-4 h-4 text-accent" />
+                      </div>
+                      <span className="text-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
 
-              <div className="mt-8 pt-6 border-t border-border">
-                <div className="flex items-baseline gap-2 mb-6">
-                  <span className="text-5xl font-bold font-display text-gradient-party">
-                    349€
-                  </span>
-                  <span className="text-muted-foreground text-lg">ab</span>
+                <div className="mt-8 pt-6 border-t border-border">
+                  <div className="flex items-baseline gap-2 mb-6">
+                    <span className="text-5xl font-bold font-display text-gradient-party">
+                      349€
+                    </span>
+                    <span className="text-muted-foreground text-lg">ab</span>
+                  </div>
+                  <Button
+                    size="lg"
+                    className="w-full text-lg py-6 bg-gradient-party shadow-party hover:scale-[1.02] transition-transform"
+                    asChild
+                  >
+                    <Link to="/kontakt">Termin anfragen</Link>
+                  </Button>
                 </div>
-                <Button
-                  size="lg"
-                  className="w-full text-lg py-6 bg-gradient-party shadow-party hover:scale-[1.02] transition-transform"
-                  asChild
-                >
-                  <Link to="/kontakt">Termin anfragen</Link>
-                </Button>
               </div>
-            </div>
+            </FadeIn>
 
-            {/* Add-ons */}
-            <div>
+            <FadeIn direction="right" delay={0.15}>
               <div className="flex items-center gap-2 mb-6">
                 <Sparkles className="w-5 h-5 text-secondary" />
                 <h2 className="text-2xl font-bold font-display">
@@ -105,14 +106,14 @@ const PhotoBooth = () => {
                   <Link to="/party-pakete">Party Pakete ansehen</Link>
                 </Button>
               </div>
-            </div>
+            </FadeIn>
           </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="py-20 px-4 bg-muted/50">
-        <div className="max-w-3xl mx-auto text-center">
+        <FadeIn className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
             Bereit für unvergessliche{" "}
             <span className="text-gradient-party">Erinnerungen</span>?
@@ -127,7 +128,7 @@ const PhotoBooth = () => {
           >
             <Link to="/kontakt">Termin anfragen</Link>
           </Button>
-        </div>
+        </FadeIn>
       </section>
 
       <Footer />

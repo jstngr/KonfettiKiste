@@ -5,6 +5,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Check, Sparkles, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import FadeIn, { StaggerContainer, StaggerItem } from "@/components/animations/FadeIn";
 
 interface PackageData {
   name: string;
@@ -229,6 +230,16 @@ const PackageCard = ({ pkg }: { pkg: PackageData }) => (
   </div>
 );
 
+const PackageGrid = ({ packages }: { packages: PackageData[] }) => (
+  <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.12}>
+    {packages.map((pkg) => (
+      <StaggerItem key={pkg.name}>
+        <PackageCard pkg={pkg} />
+      </StaggerItem>
+    ))}
+  </StaggerContainer>
+);
+
 const PartyPakete = () => {
   return (
     <div className="min-h-screen bg-background">
@@ -236,7 +247,7 @@ const PartyPakete = () => {
 
       <section className="pt-32 pb-24 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
+          <FadeIn className="text-center mb-12">
             <h1 className="text-4xl md:text-6xl font-bold font-display mb-4">
               Unsere <span className="text-gradient-party">Party Pakete</span>
             </h1>
@@ -244,74 +255,57 @@ const PartyPakete = () => {
               Von der kleinen Disco bis zum großen Festival – wählen Sie das
               perfekte Paket für Ihre Feier.
             </p>
-          </div>
+          </FadeIn>
 
-          <Tabs defaultValue="indoor" className="w-full">
-            <TabsList className="w-full max-w-2xl mx-auto grid grid-cols-2 md:grid-cols-4 h-auto p-1.5 bg-muted rounded-xl mb-12">
-              <TabsTrigger
-                value="indoor"
-                className="rounded-lg py-2.5 text-sm font-semibold data-[state=active]:bg-gradient-party data-[state=active]:text-primary-foreground"
-              >
-                🏠 Indoor
-              </TabsTrigger>
-              <TabsTrigger
-                value="summer"
-                className="rounded-lg py-2.5 text-sm font-semibold data-[state=active]:bg-gradient-party data-[state=active]:text-primary-foreground"
-              >
-                ☀️ Summer
-              </TabsTrigger>
-              <TabsTrigger
-                value="night"
-                className="rounded-lg py-2.5 text-sm font-semibold data-[state=active]:bg-gradient-party data-[state=active]:text-primary-foreground"
-              >
-                🌙 Night Party
-              </TabsTrigger>
-              <TabsTrigger
-                value="business"
-                className="rounded-lg py-2.5 text-sm font-semibold data-[state=active]:bg-gradient-party data-[state=active]:text-primary-foreground"
-              >
-                💼 Business
-              </TabsTrigger>
-            </TabsList>
+          <FadeIn delay={0.2}>
+            <Tabs defaultValue="indoor" className="w-full">
+              <TabsList className="w-full max-w-2xl mx-auto grid grid-cols-2 md:grid-cols-4 h-auto p-1.5 bg-muted rounded-xl mb-12">
+                <TabsTrigger
+                  value="indoor"
+                  className="rounded-lg py-2.5 text-sm font-semibold data-[state=active]:bg-gradient-party data-[state=active]:text-primary-foreground"
+                >
+                  🏠 Indoor
+                </TabsTrigger>
+                <TabsTrigger
+                  value="summer"
+                  className="rounded-lg py-2.5 text-sm font-semibold data-[state=active]:bg-gradient-party data-[state=active]:text-primary-foreground"
+                >
+                  ☀️ Summer
+                </TabsTrigger>
+                <TabsTrigger
+                  value="night"
+                  className="rounded-lg py-2.5 text-sm font-semibold data-[state=active]:bg-gradient-party data-[state=active]:text-primary-foreground"
+                >
+                  🌙 Night Party
+                </TabsTrigger>
+                <TabsTrigger
+                  value="business"
+                  className="rounded-lg py-2.5 text-sm font-semibold data-[state=active]:bg-gradient-party data-[state=active]:text-primary-foreground"
+                >
+                  💼 Business
+                </TabsTrigger>
+              </TabsList>
 
-            <TabsContent value="indoor">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {indoorPackages.map((pkg) => (
-                  <PackageCard key={pkg.name} pkg={pkg} />
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="summer">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {summerPackages.map((pkg) => (
-                  <PackageCard key={pkg.name} pkg={pkg} />
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="night">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {nightPackages.map((pkg) => (
-                  <PackageCard key={pkg.name} pkg={pkg} />
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="business">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {businessPackages.map((pkg) => (
-                  <PackageCard key={pkg.name} pkg={pkg} />
-                ))}
-              </div>
-            </TabsContent>
-          </Tabs>
+              <TabsContent value="indoor">
+                <PackageGrid packages={indoorPackages} />
+              </TabsContent>
+              <TabsContent value="summer">
+                <PackageGrid packages={summerPackages} />
+              </TabsContent>
+              <TabsContent value="night">
+                <PackageGrid packages={nightPackages} />
+              </TabsContent>
+              <TabsContent value="business">
+                <PackageGrid packages={businessPackages} />
+              </TabsContent>
+            </Tabs>
+          </FadeIn>
         </div>
       </section>
 
       {/* CTA */}
       <section className="py-20 px-4 bg-muted/50">
-        <div className="max-w-3xl mx-auto text-center">
+        <FadeIn className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
             Nicht sicher, welches Paket passt?
           </h2>
@@ -326,7 +320,7 @@ const PartyPakete = () => {
           >
             <Link to="/kontakt">Termin anfragen</Link>
           </Button>
-        </div>
+        </FadeIn>
       </section>
 
       <Footer />

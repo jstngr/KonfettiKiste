@@ -8,6 +8,8 @@ import { trackVisit } from "./lib/analytics";
 import heroImage from "@/assets/hero-party.jpg";
 import { CookieBanner } from "./components/CookieBanner";
 import { useConsent } from "./hooks/useConsent";
+import { PartyCartProvider } from "./context/PartyCartContext";
+import PartyCartFloat from "./components/PartyCartFloat";
 
 import Index from "./pages/Index";
 import PhotoBooth from "./pages/PhotoBooth";
@@ -67,11 +69,10 @@ const App = () => {
             </h1>
 
             <p className="text-lg md:text-xl mb-10 text-primary-foreground/90 max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-              Wir stecken mitten in den Vorbereitungen – bald geht’s los!
+              Wir stecken mitten in den Vorbereitungen – bald geht's los!
             </p>
           </div>
         </section>
-        );
       </div>
     );
   }
@@ -79,23 +80,26 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <CookieBanner />
-        <BrowserRouter basename={getBasename()}>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/photo-booth" element={<PhotoBooth />} />
-            <Route path="/party-pakete" element={<PartyPakete />} />
-            <Route path="/add-ons" element={<AddonsPage />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/business-events" element={<BusinessEvents />} />
-            <Route path="/kontakt" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <PartyCartProvider>
+          <Toaster />
+          <Sonner />
+          <CookieBanner />
+          <BrowserRouter basename={getBasename()}>
+            <ScrollToTop />
+            <PartyCartFloat />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/photo-booth" element={<PhotoBooth />} />
+              <Route path="/party-pakete" element={<PartyPakete />} />
+              <Route path="/add-ons" element={<AddonsPage />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/business-events" element={<BusinessEvents />} />
+              <Route path="/kontakt" element={<Contact />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </PartyCartProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );

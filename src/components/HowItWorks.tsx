@@ -6,19 +6,22 @@ const steps = [
   {
     icon: <Search className="w-8 h-8" />,
     title: "Erlebnis wählen",
-    description: "Wählen Sie Ihre Photo Booth, ein Party Paket oder beides – ganz nach Ihren Wünschen.",
+    description:
+      "Wählen Sie Ihre Fotobox, ein Party Paket oder beides – ganz nach Ihren Wünschen.",
     color: "bg-primary/10 text-primary",
   },
   {
     icon: <Sparkles className="w-8 h-8" />,
     title: "Extras hinzufügen",
-    description: "Ballonbogen, Popcorn, Zuckerwatte – machen Sie Ihre Feier noch besonderer.",
+    description:
+      "Ballonbogen, Popcorn, Zuckerwatte – machen Sie Ihre Feier noch besonderer.",
     color: "bg-secondary/10 text-secondary",
   },
   {
     icon: <PartyPopper className="w-8 h-8" />,
     title: "Feiern & Genießen",
-    description: "Wir liefern, bauen auf und kümmern uns um alles. Sie genießen einfach die Party!",
+    description:
+      "Wir liefern, bauen auf und kümmern uns um alles. Sie genießen einfach die Party!",
     color: "bg-coral/10 text-coral",
   },
 ];
@@ -40,14 +43,18 @@ const HowItWorks = () => {
           {steps.map((step, i) => (
             <div key={step.title} className="text-center">
               <div className="relative inline-block mb-6">
-                <div className={`w-20 h-20 rounded-2xl ${step.color} flex items-center justify-center mx-auto`}>
+                <div
+                  className={`w-20 h-20 rounded-2xl ${step.color} flex items-center justify-center mx-auto`}
+                >
                   {step.icon}
                 </div>
                 <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-foreground text-background flex items-center justify-center text-sm font-bold">
                   {i + 1}
                 </div>
               </div>
-              <h3 className="text-xl font-bold font-display mb-2">{step.title}</h3>
+              <h3 className="text-xl font-bold font-display mb-2">
+                {step.title}
+              </h3>
               <p className="text-muted-foreground">{step.description}</p>
             </div>
           ))}

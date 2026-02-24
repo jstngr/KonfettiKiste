@@ -14,19 +14,62 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-background/70 text-sm leading-relaxed">
-              Unvergessliche Party-Erlebnisse mit professioneller Photo Booth und liebevollen Party Paketen.
+              Unvergessliche Party-Erlebnisse mit professioneller Fotobox und
+              liebevollen Party Paketen.
             </p>
           </div>
 
           <div>
             <h4 className="font-bold font-display text-lg mb-4">Navigation</h4>
             <ul className="space-y-2 text-background/70 text-sm">
-              <li><Link to="/photo-booth" className="hover:text-secondary transition-colors">Photo Booth</Link></li>
-              <li><Link to="/party-pakete" className="hover:text-secondary transition-colors">Party Pakete</Link></li>
-              <li><Link to="/add-ons" className="hover:text-secondary transition-colors">Add-ons</Link></li>
-              <li><Link to="/gallery" className="hover:text-secondary transition-colors">Gallery</Link></li>
-              <li><Link to="/blog" className="hover:text-secondary transition-colors">Blog</Link></li>
-              <li><Link to="/business-events" className="hover:text-secondary transition-colors">Business Events</Link></li>
+              <li>
+                <Link
+                  to="/photo-booth"
+                  className="hover:text-secondary transition-colors"
+                >
+                  Fotobox
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/party-pakete"
+                  className="hover:text-secondary transition-colors"
+                >
+                  Party Pakete
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/add-ons"
+                  className="hover:text-secondary transition-colors"
+                >
+                  Add-ons
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/gallery"
+                  className="hover:text-secondary transition-colors"
+                >
+                  Gallery
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/blog"
+                  className="hover:text-secondary transition-colors"
+                >
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/business-events"
+                  className="hover:text-secondary transition-colors"
+                >
+                  Business Events
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -67,7 +110,8 @@ const Footer = () => {
               </Link>
             </div>
             <p className="text-background/50 text-xs mt-6">
-              © {new Date().getFullYear()} KonfettiKiste. Alle Rechte vorbehalten.
+              © {new Date().getFullYear()} KonfettiKiste. Alle Rechte
+              vorbehalten.
             </p>
           </div>
         </div>

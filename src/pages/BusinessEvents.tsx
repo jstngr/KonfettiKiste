@@ -5,7 +5,7 @@ import { Check, Sparkles, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const includes = [
-  "Photo Booth Erlebnis",
+  "Fotobox Erlebnis",
   "Sofortdruck inklusive",
   "Digitale Galerie",
   "Premium Hintergrund",
@@ -36,19 +36,25 @@ const BusinessEvents = () => {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-lavender/10 rounded-full px-5 py-2 mb-6">
               <Building2 className="w-5 h-5 text-lavender" />
-              <span className="text-sm font-semibold text-lavender">Für Unternehmen</span>
+              <span className="text-sm font-semibold text-lavender">
+                Für Unternehmen
+              </span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold font-display mb-6">
               Business <span className="text-gradient-party">Events</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Machen Sie Ihr nächstes Firmenevent, Ihre Messe oder Team-Feier zu einem unvergesslichen Erlebnis mit der KonfettiKiste Business Experience.
+              Machen Sie Ihr nächstes Firmenevent, Ihre Messe oder Team-Feier zu
+              einem unvergesslichen Erlebnis mit der KonfettiKiste Business
+              Experience.
             </p>
           </div>
 
           {/* Benefits */}
           <div className="bg-card rounded-3xl border-2 border-lavender/30 p-8 md:p-10 mb-12">
-            <h2 className="text-2xl font-bold font-display mb-6">Warum KonfettiKiste für Ihr Event?</h2>
+            <h2 className="text-2xl font-bold font-display mb-6">
+              Warum KonfettiKiste für Ihr Event?
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {benefits.map((b) => (
                 <div key={b} className="flex items-start gap-3">
@@ -64,9 +70,13 @@ const BusinessEvents = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Package */}
             <div className="bg-card rounded-3xl border-2 border-border p-8 md:p-10">
-              <h2 className="text-2xl font-bold font-display mb-2">KonfettiKiste Business Experience</h2>
+              <h2 className="text-2xl font-bold font-display mb-2">
+                KonfettiKiste Business Experience
+              </h2>
               <div className="mb-6">
-                <span className="text-5xl font-bold font-display text-gradient-party">549€</span>
+                <span className="text-5xl font-bold font-display text-gradient-party">
+                  549€
+                </span>
                 <span className="text-muted-foreground ml-1 text-lg">ab</span>
               </div>
               <ul className="space-y-3 mb-8">
@@ -92,7 +102,9 @@ const BusinessEvents = () => {
             <div>
               <div className="flex items-center gap-2 mb-6">
                 <Sparkles className="w-5 h-5 text-secondary" />
-                <h2 className="text-2xl font-bold font-display">Business Add-ons</h2>
+                <h2 className="text-2xl font-bold font-display">
+                  Business Add-ons
+                </h2>
               </div>
               <div className="space-y-4">
                 {addons.map((addon) => (
@@ -101,14 +113,17 @@ const BusinessEvents = () => {
                     className="bg-card rounded-2xl border-2 border-border p-5 flex items-center justify-between hover:border-primary/40 hover:shadow-md transition-all"
                   >
                     <span className="font-semibold">{addon.name}</span>
-                    <span className="font-bold text-primary text-lg">+{addon.price}€</span>
+                    <span className="font-bold text-primary text-lg">
+                      +{addon.price}€
+                    </span>
                   </div>
                 ))}
               </div>
 
               <div className="mt-8 bg-muted/50 rounded-2xl p-6 text-center">
                 <p className="text-muted-foreground mb-4">
-                  Individuelle Anforderungen? Wir erstellen gerne ein maßgeschneidertes Angebot.
+                  Individuelle Anforderungen? Wir erstellen gerne ein
+                  maßgeschneidertes Angebot.
                 </p>
                 <Button variant="outline" asChild className="rounded-xl">
                   <Link to="/kontakt">Kontakt aufnehmen</Link>

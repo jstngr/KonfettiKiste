@@ -25,8 +25,8 @@ const Hero = () => {
         </h1>
 
         <p className="text-lg md:text-xl mb-10 text-primary-foreground/90 max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-          Mit der KonfettiKiste Photo Booth und liebevoll gestalteten Party
-          Paketen wird Ihre Feier zu einem echten Highlight.
+          Mit der Fotobox und liebevoll gestalteten Party Paketen wird Ihre
+          Feier zu einem echten Highlight.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -35,7 +35,7 @@ const Hero = () => {
             className="text-lg px-8 py-6 bg-gradient-party shadow-party hover:scale-105 transition-transform"
             asChild
           >
-            <Link to="/photo-booth">Photo Booth entdecken</Link>
+            <Link to="/photo-booth">Fotobox entdecken</Link>
           </Button>
           <Button
             size="lg"

@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "Photo Booth", href: "/photo-booth" },
+  { label: "Fotobox", href: "/photo-booth" },
   { label: "Party Pakete", href: "/party-pakete" },
   { label: "Add-ons", href: "/add-ons" },
   { label: "Gallery", href: "/gallery" },
@@ -32,13 +32,25 @@ const Navbar = () => {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        showSolid ? "bg-card/95 backdrop-blur-md shadow-md py-3" : "bg-transparent py-5"
+        showSolid
+          ? "bg-card/95 backdrop-blur-md shadow-md py-3"
+          : "bg-transparent py-5",
       )}
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <PartyPopper className={cn("w-6 h-6", showSolid ? "text-primary" : "text-secondary")} />
-          <span className={cn("text-xl font-bold font-display", showSolid ? "text-foreground" : "text-primary-foreground")}>
+          <PartyPopper
+            className={cn(
+              "w-6 h-6",
+              showSolid ? "text-primary" : "text-secondary",
+            )}
+          />
+          <span
+            className={cn(
+              "text-xl font-bold font-display",
+              showSolid ? "text-foreground" : "text-primary-foreground",
+            )}
+          >
             Konfetti<span className="text-secondary">Kiste</span>
           </span>
         </Link>
@@ -50,7 +62,11 @@ const Navbar = () => {
               to={item.href}
               className={cn(
                 "font-semibold text-sm transition-colors hover:text-primary",
-                location.pathname === item.href ? "text-primary" : showSolid ? "text-foreground" : "text-primary-foreground"
+                location.pathname === item.href
+                  ? "text-primary"
+                  : showSolid
+                    ? "text-foreground"
+                    : "text-primary-foreground",
               )}
             >
               {item.label}
@@ -66,9 +82,19 @@ const Navbar = () => {
 
         <button onClick={() => setOpen(!open)} className="lg:hidden">
           {open ? (
-            <X className={cn("w-6 h-6", showSolid ? "text-foreground" : "text-primary-foreground")} />
+            <X
+              className={cn(
+                "w-6 h-6",
+                showSolid ? "text-foreground" : "text-primary-foreground",
+              )}
+            />
           ) : (
-            <Menu className={cn("w-6 h-6", showSolid ? "text-foreground" : "text-primary-foreground")} />
+            <Menu
+              className={cn(
+                "w-6 h-6",
+                showSolid ? "text-foreground" : "text-primary-foreground",
+              )}
+            />
           )}
         </button>
       </div>
@@ -82,7 +108,9 @@ const Navbar = () => {
               onClick={() => setOpen(false)}
               className={cn(
                 "block w-full text-left font-semibold hover:text-primary py-2",
-                location.pathname === item.href ? "text-primary" : "text-foreground"
+                location.pathname === item.href
+                  ? "text-primary"
+                  : "text-foreground",
               )}
             >
               {item.label}

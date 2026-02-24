@@ -18,9 +18,14 @@ const indoorPackages: PackageData[] = [
   {
     name: "KonfettiKiste Mini Disco",
     price: 179,
-    includes: ["Party Lautsprecher", "Disco Beleuchtung", "Ballon Dekoration Set", "Konfetti Party Set"],
+    includes: [
+      "Party Lautsprecher",
+      "Disco Beleuchtung",
+      "Ballon Dekoration Set",
+      "Konfetti Party Set",
+    ],
     addons: [
-      { name: "Photo Booth Erlebnis", price: 199 },
+      { name: "Fotobox Erlebnis", price: 199 },
       { name: "Premium Ballonbogen", price: 79 },
       { name: "Popcorn Maschine", price: 49 },
       { name: "Zuckerwatte Maschine", price: 59 },
@@ -31,7 +36,13 @@ const indoorPackages: PackageData[] = [
     name: "KonfettiKiste Konfetti Party",
     price: 349,
     popular: true,
-    includes: ["Photo Booth Erlebnis", "Sofortdruck inklusive", "Digitale Galerie", "Party Beleuchtung", "Ballon Dekoration"],
+    includes: [
+      "Fotobox Erlebnis",
+      "Sofortdruck inklusive",
+      "Digitale Galerie",
+      "Party Beleuchtung",
+      "Ballon Dekoration",
+    ],
     addons: [
       { name: "Premium Hintergrund", price: 79 },
       { name: "Premium Ballonbogen", price: 79 },
@@ -42,7 +53,14 @@ const indoorPackages: PackageData[] = [
   {
     name: "KonfettiKiste Celebration",
     price: 449,
-    includes: ["Photo Booth Erlebnis", "Sofortdruck inklusive", "Digitale Galerie", "Premium Hintergrund", "Party Beleuchtung", "Premium Ballon Dekoration"],
+    includes: [
+      "Fotobox Erlebnis",
+      "Sofortdruck inklusive",
+      "Digitale Galerie",
+      "Premium Hintergrund",
+      "Party Beleuchtung",
+      "Premium Ballon Dekoration",
+    ],
     addons: [
       { name: "Premium Ballonbogen", price: 79 },
       { name: "Popcorn Maschine", price: 49 },
@@ -55,9 +73,14 @@ const summerPackages: PackageData[] = [
   {
     name: "KonfettiKiste Garden Disco",
     price: 229,
-    includes: ["Lautsprecher", "Disco Beleuchtung", "Ballon Dekoration", "Konfetti Set"],
+    includes: [
+      "Lautsprecher",
+      "Disco Beleuchtung",
+      "Ballon Dekoration",
+      "Konfetti Set",
+    ],
     addons: [
-      { name: "Photo Booth Erlebnis", price: 199 },
+      { name: "Fotobox Erlebnis", price: 199 },
       { name: "Premium Ballonbogen", price: 79 },
       { name: "Popcorn Maschine", price: 49 },
       { name: "Zuckerwatte Maschine", price: 59 },
@@ -66,7 +89,14 @@ const summerPackages: PackageData[] = [
   {
     name: "KonfettiKiste Konfetti Fest",
     price: 449,
-    includes: ["Photo Booth Erlebnis", "Sofortdruck inklusive", "Digitale Galerie", "Premium Hintergrund", "Party Beleuchtung", "Ballon Dekoration"],
+    includes: [
+      "Fotobox Erlebnis",
+      "Sofortdruck inklusive",
+      "Digitale Galerie",
+      "Premium Hintergrund",
+      "Party Beleuchtung",
+      "Ballon Dekoration",
+    ],
     addons: [
       { name: "Premium Ballonbogen", price: 79 },
       { name: "Popcorn Maschine", price: 49 },
@@ -76,7 +106,14 @@ const summerPackages: PackageData[] = [
   {
     name: "KonfettiKiste Garden Festival",
     price: 599,
-    includes: ["Photo Booth Erlebnis", "Sofortdruck inklusive", "Digitale Galerie", "Premium Hintergrund", "Premium Ballon Dekoration", "Party Beleuchtung"],
+    includes: [
+      "Fotobox Erlebnis",
+      "Sofortdruck inklusive",
+      "Digitale Galerie",
+      "Premium Hintergrund",
+      "Premium Ballon Dekoration",
+      "Party Beleuchtung",
+    ],
     addons: [
       { name: "Popcorn Maschine", price: 49 },
       { name: "Zuckerwatte Maschine", price: 59 },
@@ -89,7 +126,13 @@ const nightPackages: PackageData[] = [
   {
     name: "KonfettiKiste Night Experience",
     price: 399,
-    includes: ["Photo Booth Erlebnis", "Sofortdruck inklusive", "Digitale Galerie", "Premium Hintergrund", "Disco Beleuchtung"],
+    includes: [
+      "Fotobox Erlebnis",
+      "Sofortdruck inklusive",
+      "Digitale Galerie",
+      "Premium Hintergrund",
+      "Disco Beleuchtung",
+    ],
     addons: [
       { name: "Premium Ballonbogen", price: 79 },
       { name: "Individuelles Druckdesign", price: 49 },
@@ -102,7 +145,13 @@ const businessPackages: PackageData[] = [
   {
     name: "KonfettiKiste Business Experience",
     price: 549,
-    includes: ["Photo Booth Erlebnis", "Sofortdruck inklusive", "Digitale Galerie", "Premium Hintergrund", "Professionelle Beleuchtung"],
+    includes: [
+      "Fotobox Erlebnis",
+      "Sofortdruck inklusive",
+      "Digitale Galerie",
+      "Premium Hintergrund",
+      "Professionelle Beleuchtung",
+    ],
     addons: [
       { name: "Individuelles Druckdesign mit Firmenlogo", price: 49 },
       { name: "Premium Hintergrund Auswahl", price: 79 },
@@ -115,7 +164,7 @@ const PackageCard = ({ pkg }: { pkg: PackageData }) => (
   <div
     className={cn(
       "bg-card rounded-2xl border-2 p-6 md:p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover relative",
-      pkg.popular ? "border-primary shadow-party" : "border-border"
+      pkg.popular ? "border-primary shadow-party" : "border-border",
     )}
   >
     {pkg.popular && (
@@ -124,14 +173,20 @@ const PackageCard = ({ pkg }: { pkg: PackageData }) => (
       </div>
     )}
 
-    <h3 className="text-xl md:text-2xl font-bold font-display mb-2">{pkg.name}</h3>
+    <h3 className="text-xl md:text-2xl font-bold font-display mb-2">
+      {pkg.name}
+    </h3>
     <div className="mb-6">
-      <span className="text-4xl font-bold font-display text-gradient-party">{pkg.price}€</span>
+      <span className="text-4xl font-bold font-display text-gradient-party">
+        {pkg.price}€
+      </span>
       <span className="text-muted-foreground ml-1">ab</span>
     </div>
 
     <div className="mb-6">
-      <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-wider mb-3">Inklusive</h4>
+      <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-wider mb-3">
+        Inklusive
+      </h4>
       <ul className="space-y-2.5">
         {pkg.includes.map((item) => (
           <li key={item} className="flex items-start gap-2 text-sm">
@@ -148,7 +203,10 @@ const PackageCard = ({ pkg }: { pkg: PackageData }) => (
       </h4>
       <ul className="space-y-2">
         {pkg.addons.map((addon) => (
-          <li key={addon.name} className="flex items-center justify-between text-sm">
+          <li
+            key={addon.name}
+            className="flex items-center justify-between text-sm"
+          >
             <span className="text-muted-foreground">{addon.name}</span>
             <span className="font-semibold text-primary">+{addon.price}€</span>
           </li>
@@ -159,7 +217,9 @@ const PackageCard = ({ pkg }: { pkg: PackageData }) => (
     <Button
       className={cn(
         "w-full",
-        pkg.popular ? "bg-gradient-party shadow-party hover:scale-105 transition-transform" : ""
+        pkg.popular
+          ? "bg-gradient-party shadow-party hover:scale-105 transition-transform"
+          : "",
       )}
       variant={pkg.popular ? "default" : "outline"}
       asChild
@@ -181,47 +241,68 @@ const PartyPakete = () => {
               Unsere <span className="text-gradient-party">Party Pakete</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Von der kleinen Disco bis zum großen Festival – wählen Sie das perfekte Paket für Ihre Feier.
+              Von der kleinen Disco bis zum großen Festival – wählen Sie das
+              perfekte Paket für Ihre Feier.
             </p>
           </div>
 
           <Tabs defaultValue="indoor" className="w-full">
             <TabsList className="w-full max-w-2xl mx-auto grid grid-cols-2 md:grid-cols-4 h-auto p-1.5 bg-muted rounded-xl mb-12">
-              <TabsTrigger value="indoor" className="rounded-lg py-2.5 text-sm font-semibold data-[state=active]:bg-gradient-party data-[state=active]:text-primary-foreground">
+              <TabsTrigger
+                value="indoor"
+                className="rounded-lg py-2.5 text-sm font-semibold data-[state=active]:bg-gradient-party data-[state=active]:text-primary-foreground"
+              >
                 🏠 Indoor
               </TabsTrigger>
-              <TabsTrigger value="summer" className="rounded-lg py-2.5 text-sm font-semibold data-[state=active]:bg-gradient-party data-[state=active]:text-primary-foreground">
+              <TabsTrigger
+                value="summer"
+                className="rounded-lg py-2.5 text-sm font-semibold data-[state=active]:bg-gradient-party data-[state=active]:text-primary-foreground"
+              >
                 ☀️ Summer
               </TabsTrigger>
-              <TabsTrigger value="night" className="rounded-lg py-2.5 text-sm font-semibold data-[state=active]:bg-gradient-party data-[state=active]:text-primary-foreground">
+              <TabsTrigger
+                value="night"
+                className="rounded-lg py-2.5 text-sm font-semibold data-[state=active]:bg-gradient-party data-[state=active]:text-primary-foreground"
+              >
                 🌙 Night Party
               </TabsTrigger>
-              <TabsTrigger value="business" className="rounded-lg py-2.5 text-sm font-semibold data-[state=active]:bg-gradient-party data-[state=active]:text-primary-foreground">
+              <TabsTrigger
+                value="business"
+                className="rounded-lg py-2.5 text-sm font-semibold data-[state=active]:bg-gradient-party data-[state=active]:text-primary-foreground"
+              >
                 💼 Business
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="indoor">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {indoorPackages.map((pkg) => <PackageCard key={pkg.name} pkg={pkg} />)}
+                {indoorPackages.map((pkg) => (
+                  <PackageCard key={pkg.name} pkg={pkg} />
+                ))}
               </div>
             </TabsContent>
 
             <TabsContent value="summer">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {summerPackages.map((pkg) => <PackageCard key={pkg.name} pkg={pkg} />)}
+                {summerPackages.map((pkg) => (
+                  <PackageCard key={pkg.name} pkg={pkg} />
+                ))}
               </div>
             </TabsContent>
 
             <TabsContent value="night">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {nightPackages.map((pkg) => <PackageCard key={pkg.name} pkg={pkg} />)}
+                {nightPackages.map((pkg) => (
+                  <PackageCard key={pkg.name} pkg={pkg} />
+                ))}
               </div>
             </TabsContent>
 
             <TabsContent value="business">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {businessPackages.map((pkg) => <PackageCard key={pkg.name} pkg={pkg} />)}
+                {businessPackages.map((pkg) => (
+                  <PackageCard key={pkg.name} pkg={pkg} />
+                ))}
               </div>
             </TabsContent>
           </Tabs>
@@ -235,7 +316,8 @@ const PartyPakete = () => {
             Nicht sicher, welches Paket passt?
           </h2>
           <p className="text-muted-foreground mb-8">
-            Kontaktieren Sie uns – wir beraten Sie gerne und finden das perfekte Paket für Ihre Feier.
+            Kontaktieren Sie uns – wir beraten Sie gerne und finden das perfekte
+            Paket für Ihre Feier.
           </p>
           <Button
             size="lg"

@@ -3,17 +3,17 @@ import { Star, Quote } from "lucide-react";
 const testimonials = [
   {
     name: "Sarah M.",
-    text: "Die Photo Booth war das absolute Highlight! Die Kinder hatten so viel Spaß und die Ausdrucke sind wunderschöne Erinnerungen.",
+    text: "Die Fotobox war das absolute Highlight! Die Kinder hatten so viel Spaß und die Ausdrucke sind wunderschöne Erinnerungen.",
     rating: 5,
   },
   {
     name: "Thomas K.",
-    text: "Konfetti Party gebucht und es war perfekt organisiert. Die Photo Booth mit Sofortdruck hat alle begeistert. Nächstes Jahr wieder!",
+    text: "Konfetti Party gebucht und es war perfekt organisiert. Die Fotobox mit Sofortdruck hat alle begeistert. Nächstes Jahr wieder!",
     rating: 5,
   },
   {
     name: "Lisa R.",
-    text: "Tolles Business-Event mit der KonfettiKiste Photo Booth. Professionell, hochwertig und unsere Mitarbeiter reden heute noch davon!",
+    text: "Tolles Business-Event mit der KonfettiKiste Fotobox. Professionell, hochwertig und unsere Mitarbeiter reden heute noch davon!",
     rating: 5,
   },
 ];

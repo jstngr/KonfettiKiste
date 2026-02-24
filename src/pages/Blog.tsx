@@ -7,25 +7,29 @@ import { Link } from "react-router-dom";
 const blogPosts = [
   {
     title: "10 Ideen für einen unvergesslichen Kindergeburtstag",
-    excerpt: "Von der Photo Booth bis zur Zuckerwatte – so wird der nächste Geburtstag zum Highlight für alle Kinder.",
+    excerpt:
+      "Von der Fotobox bis zur Zuckerwatte – so wird der nächste Geburtstag zum Highlight für alle Kinder.",
     category: "Kindergeburtstag",
     date: "15. Februar 2026",
   },
   {
-    title: "Photo Booth vs. Selfie-Station: Was lohnt sich wirklich?",
-    excerpt: "Warum eine professionelle DSLR Photo Booth mehr ist als nur ein Foto-Automat – und wie sie Ihre Feier aufwertet.",
-    category: "Photo Booth",
+    title: "Fotobox vs. Selfie-Station: Was lohnt sich wirklich?",
+    excerpt:
+      "Warum eine professionelle DSLR Fotobox mehr ist als nur ein Foto-Automat – und wie sie Ihre Feier aufwertet.",
+    category: "Fotobox",
     date: "8. Februar 2026",
   },
   {
     title: "Die perfekte Gartenparty im Sommer planen",
-    excerpt: "Tipps und Tricks für eine unvergessliche Outdoor-Feier mit Kindern – inkl. Checkliste zum Download.",
+    excerpt:
+      "Tipps und Tricks für eine unvergessliche Outdoor-Feier mit Kindern – inkl. Checkliste zum Download.",
     category: "Sommer Party",
     date: "1. Februar 2026",
   },
   {
-    title: "Warum Unternehmen auf Photo Booths setzen",
-    excerpt: "Team-Events, Messen und Firmenfeiern – wie Photo Booths das Employer Branding stärken.",
+    title: "Warum Unternehmen auf Fotoboxs setzen",
+    excerpt:
+      "Team-Events, Messen und Firmenfeiern – wie Fotoboxs das Employer Branding stärken.",
     category: "Business",
     date: "25. Januar 2026",
   },
@@ -44,10 +48,13 @@ const Blog = () => {
               <span className="text-sm font-semibold text-lavender">Blog</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold font-display mb-4">
-              Inspiration für <span className="text-gradient-party">Kindergeburtstage</span> und Feiern
+              Inspiration für{" "}
+              <span className="text-gradient-party">Kindergeburtstage</span> und
+              Feiern
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Tipps, Ideen und Inspiration rund um unvergessliche Partys und Events.
+              Tipps, Ideen und Inspiration rund um unvergessliche Partys und
+              Events.
             </p>
           </div>
 
@@ -65,13 +72,20 @@ const Blog = () => {
                     <span className="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full">
                       {post.category}
                     </span>
-                    <span className="text-xs text-muted-foreground">{post.date}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {post.date}
+                    </span>
                   </div>
                   <h2 className="text-xl font-bold font-display mb-2 group-hover:text-primary transition-colors">
                     {post.title}
                   </h2>
-                  <p className="text-muted-foreground text-sm mb-4">{post.excerpt}</p>
-                  <Button variant="ghost" className="text-primary font-semibold px-0 hover:bg-transparent hover:text-primary/80">
+                  <p className="text-muted-foreground text-sm mb-4">
+                    {post.excerpt}
+                  </p>
+                  <Button
+                    variant="ghost"
+                    className="text-primary font-semibold px-0 hover:bg-transparent hover:text-primary/80"
+                  >
                     Weiterlesen →
                   </Button>
                 </div>
@@ -91,10 +105,12 @@ const Blog = () => {
       <section className="py-20 px-4 bg-muted/50">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
-            Inspiriert? Lassen Sie uns Ihre <span className="text-gradient-party">Party</span> planen!
+            Inspiriert? Lassen Sie uns Ihre{" "}
+            <span className="text-gradient-party">Party</span> planen!
           </h2>
           <p className="text-muted-foreground mb-8">
-            Kontaktieren Sie uns und wir machen Ihre Feier zu einem unvergesslichen Erlebnis.
+            Kontaktieren Sie uns und wir machen Ihre Feier zu einem
+            unvergesslichen Erlebnis.
           </p>
           <Button
             size="lg"

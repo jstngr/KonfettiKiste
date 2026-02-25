@@ -39,7 +39,15 @@ export const usePartyCart = () => {
 export const PartyCartProvider = ({ children }: { children: ReactNode }) => {
   const [selectedPackage, setSelectedPackage] = useState<CartPackage | null>(null);
   const [addons, setAddons] = useState<CartAddon[]>([]);
-  const [photoBoothStandalone, setPhotoBoothStandalone] = useState(false);
+  const [photoBoothStandalone, setPhotoBoothStandaloneRaw] = useState(false);
+
+  const setPhotoBoothStandalone = (val: boolean) => {
+    setPhotoBoothStandaloneRaw(val);
+    // Clear addons when deselecting photo booth standalone (if no package selected)
+    if (!val && !selectedPackage) {
+      setAddons([]);
+    }
+  };
 
   const setPackage = (pkg: CartPackage | null) => {
     setSelectedPackage(pkg);

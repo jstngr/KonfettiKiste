@@ -20,6 +20,7 @@ import Blog from "./pages/Blog";
 import BusinessEvents from "./pages/BusinessEvents";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import { Button } from "./components/ui/button";
 
 const queryClient = new QueryClient();
 
@@ -39,7 +40,19 @@ const ScrollToTop = () => {
 
 const App = () => {
   const { consent } = useConsent();
-  const [showProduction] = useState(() => localStorage.getItem("konfettikiste-production") === "true");
+  const [showProduction] = useState(
+    () => localStorage.getItem("konfettikiste-production") === "true",
+  );
+  const [clickCount, setClickCount] = useState(0);
+
+  const handleTitleClick = () => {
+    const newCount = clickCount + 1;
+    setClickCount(newCount);
+    if (newCount >= 5) {
+      localStorage.setItem("konfettikiste-production", "true");
+      window.location.reload();
+    }
+  };
 
   useEffect(() => {
     if (consent === true) {
@@ -49,8 +62,8 @@ const App = () => {
 
   if (!showProduction && window.location.origin.includes("konfettikiste.com")) {
     return (
-      <div className="min-h-screen bg-background">
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div className="min-h-dvh bg-background">
+        <section className="relative min-h-dvh flex items-center justify-center overflow-hidden">
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${heroImage})` }}
@@ -72,6 +85,14 @@ const App = () => {
             <p className="text-lg md:text-xl mb-10 text-primary-foreground/90 max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               Wir stecken mitten in den Vorbereitungen – bald geht's los!
             </p>
+            <Button
+              onClick={() => {
+                localStorage.setItem("konfettikiste-production", "true");
+                window.location.reload();
+              }}
+            >
+              Zur Produktion wechseln
+            </Button>
           </div>
         </section>
       </div>

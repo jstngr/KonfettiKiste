@@ -102,17 +102,24 @@ const PhotoBooth = () => {
                 <Sparkles className="w-5 h-5 text-secondary" />
                 <h2 className="text-2xl font-bold font-display">Verfügbare Add-ons</h2>
               </div>
+              {!isSelected && (
+                <p className="text-sm text-muted-foreground bg-muted/50 rounded-xl p-3 mb-4 italic">
+                  Bitte wählen Sie zuerst die Fotobox, um Add-ons hinzuzufügen.
+                </p>
+              )}
               <div className="space-y-4">
                 {addons.map((addon) => {
                   const selected = hasAddon(addon.name);
                   return (
-                    <div
+                  <div
                       key={addon.name}
                       className={cn(
-                        "bg-card rounded-2xl border-2 p-5 flex items-center justify-between transition-all cursor-pointer",
-                        selected ? "border-accent bg-accent/5" : "border-border hover:border-primary/40 hover:shadow-md",
+                        "bg-card rounded-2xl border-2 p-5 flex items-center justify-between transition-all",
+                        !isSelected && "opacity-50 cursor-not-allowed",
+                        isSelected && "cursor-pointer",
+                        selected ? "border-accent bg-accent/5" : isSelected ? "border-border hover:border-primary/40 hover:shadow-md" : "border-border",
                       )}
-                      onClick={() => toggleAddon(addon)}
+                      onClick={() => isSelected && toggleAddon(addon)}
                     >
                       <span className={cn("font-semibold", selected && "text-accent")}>
                         {selected && <Check className="w-4 h-4 inline mr-1" />}

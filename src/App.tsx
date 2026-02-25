@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { trackVisit } from "./lib/analytics";
 import heroImage from "@/assets/hero-party.jpg";
 import { CookieBanner } from "./components/CookieBanner";
@@ -39,6 +39,7 @@ const ScrollToTop = () => {
 
 const App = () => {
   const { consent } = useConsent();
+  const [showProduction] = useState(() => localStorage.getItem("konfettikiste-production") === "true");
 
   useEffect(() => {
     if (consent === true) {
@@ -46,7 +47,7 @@ const App = () => {
     }
   }, [consent]);
 
-  if (window.location.origin.includes("akonfettikiste.com")) {
+  if (!showProduction && window.location.origin.includes("konfettikiste.com")) {
     return (
       <div className="min-h-screen bg-background">
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">

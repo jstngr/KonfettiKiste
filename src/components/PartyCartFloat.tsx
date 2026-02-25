@@ -2,7 +2,7 @@ import { useState } from "react";
 import { usePartyCart } from "@/context/PartyCartContext";
 import { PartyPopper, X, Trash2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Drawer,
   DrawerContent,
@@ -16,6 +16,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const PartyCartFloat = () => {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
   const {
     selectedPackage,
     addons,
@@ -28,7 +29,7 @@ const PartyCartFloat = () => {
     clearCart,
   } = usePartyCart();
 
-  if (itemCount === 0) return null;
+  if (itemCount === 0 || location.pathname === "/kontakt") return null;
 
   return (
     <>

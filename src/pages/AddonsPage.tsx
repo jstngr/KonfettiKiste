@@ -18,7 +18,8 @@ const addons = [
 ];
 
 const AddonsPage = () => {
-  const { toggleAddon, hasAddon } = usePartyCart();
+  const { toggleAddon, hasAddon, selectedPackage, photoBoothStandalone } = usePartyCart();
+  const hasSelection = !!selectedPackage || photoBoothStandalone;
 
   return (
     <div className="min-h-screen bg-background">
@@ -35,10 +36,25 @@ const AddonsPage = () => {
               Zusätzliche <span className="text-gradient-party">Highlights</span> für Ihre Feier
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Machen Sie Ihre Feier noch besonderer mit unseren handverlesenen Premium Add-ons.
+               Machen Sie Ihre Feier noch besonderer mit unseren handverlesenen Premium Add-ons.
             </p>
           </FadeIn>
 
+          {!hasSelection && (
+            <div className="bg-muted/50 rounded-xl p-4 text-center mb-8 max-w-xl mx-auto">
+              <p className="text-muted-foreground text-sm italic">
+                Bitte wählen Sie zuerst ein Paket oder die Fotobox, um Add-ons hinzuzufügen.
+              </p>
+              <div className="flex gap-3 justify-center mt-3">
+                <Button size="sm" variant="outline" asChild>
+                  <Link to="/party-pakete">Party Pakete</Link>
+                </Button>
+                <Button size="sm" variant="outline" asChild>
+                  <Link to="/photo-booth">Fotobox</Link>
+                </Button>
+              </div>
+            </div>
+          )}
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.08}>
             {addons.map((addon) => {
               const selected = hasAddon(addon.name);
@@ -46,12 +62,14 @@ const AddonsPage = () => {
                 <StaggerItem key={addon.name}>
                   <div
                     className={cn(
-                      "bg-card rounded-2xl border-2 p-6 hover:-translate-y-1 transition-all duration-300 flex flex-col h-full cursor-pointer",
+                      "bg-card rounded-2xl border-2 p-6 transition-all duration-300 flex flex-col h-full",
+                      !hasSelection && "opacity-50 cursor-not-allowed",
+                      hasSelection && "cursor-pointer hover:-translate-y-1",
                       selected
                         ? "border-accent shadow-party ring-2 ring-accent/20"
-                        : "border-border hover:border-primary/40 hover:shadow-card-hover",
+                        : hasSelection ? "border-border hover:border-primary/40 hover:shadow-card-hover" : "border-border",
                     )}
-                    onClick={() => toggleAddon({ name: addon.name, price: addon.price })}
+                    onClick={() => hasSelection && toggleAddon({ name: addon.name, price: addon.price })}
                   >
                     <div className="text-4xl mb-4">{addon.emoji}</div>
                     <h3 className="text-xl font-bold font-display mb-2">{addon.name}</h3>
@@ -64,7 +82,7 @@ const AddonsPage = () => {
                         className={cn("rounded-xl", selected && "bg-accent text-accent-foreground hover:bg-accent/90")}
                         onClick={(e) => {
                           e.stopPropagation();
-                          toggleAddon({ name: addon.name, price: addon.price });
+                          if (hasSelection) toggleAddon({ name: addon.name, price: addon.price });
                         }}
                       >
                         {selected ? (

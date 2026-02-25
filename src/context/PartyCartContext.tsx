@@ -43,9 +43,12 @@ export const PartyCartProvider = ({ children }: { children: ReactNode }) => {
 
   const setPackage = (pkg: CartPackage | null) => {
     setSelectedPackage(pkg);
-    // If package includes photo booth, remove standalone
     if (pkg) {
       setPhotoBoothStandalone(false);
+    }
+    // Clear addons when deselecting package (if no photo booth standalone)
+    if (!pkg && !photoBoothStandalone) {
+      setAddons([]);
     }
   };
 

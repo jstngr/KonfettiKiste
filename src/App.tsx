@@ -78,21 +78,16 @@ const App = () => {
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary-foreground drop-shadow-lg font-display">
+            <h1
+              className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary-foreground drop-shadow-lg font-display cursor-pointer"
+              onClick={handleTitleClick}
+            >
               Konfetti<span className="text-secondary">Kiste</span>
             </h1>
 
             <p className="text-lg md:text-xl mb-10 text-primary-foreground/90 max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               Wir stecken mitten in den Vorbereitungen – bald geht's los!
             </p>
-            <Button
-              onClick={() => {
-                localStorage.setItem("konfettikiste-production", "true");
-                window.location.reload();
-              }}
-            >
-              Zur Produktion wechseln
-            </Button>
           </div>
         </section>
       </div>

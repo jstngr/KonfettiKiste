@@ -12,8 +12,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "predeploy": "DEPLOY_TARGET=gh-pages vite build",
-    "deploy": "gh-pages -d dist --cname konfettikiste.com"
+    "deploy": "DEPLOY_TARGET=gh-pages vite build && cp dist/index.html dist/404.html && gh-pages -d dist --cname konfettikiste.com"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
